@@ -17,7 +17,7 @@ namespace TestApp
             // Create Poll
 #if true
             var poll = new PollBuilder()
-                .WithTitle("")
+                .WithTitle("Test")
                 .WithDescription("StrawSharp Test")
                 .Private()
                 .MultipleChoice()

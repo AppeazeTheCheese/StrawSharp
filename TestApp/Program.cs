@@ -29,7 +29,7 @@ namespace TestApp
 
             // Get Poll
 #if true
-            var getPollResponse = await client.GetPollAsync(createPollResponse.Poll.Id);
+            var getPollResponse = await client.GetPollAsync(createPollResponse.Id);
 #endif
 
             Console.Read();

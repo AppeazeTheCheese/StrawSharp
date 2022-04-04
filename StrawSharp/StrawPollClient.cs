@@ -21,6 +21,8 @@ namespace StrawSharp
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }
 
+        public static string GetPollUrl(string pollId) => $"https://strawpoll.com/polls/{pollId}";
+
         public StrawPollClient() { }
 
         public StrawPollClient(string apiKey)
@@ -28,16 +30,16 @@ namespace StrawSharp
             _apiKey = apiKey;
         }
 
-        public async Task<PollResponse> CreatePollAsync(Poll poll)
+        public async Task<Poll> CreatePollAsync(Poll poll)
         {
             var request = new CreatePollRequest(poll);
-            return await SendRequestAsync(request);
+            return (await SendRequestAsync(request)).Poll;
         }
 
-        public async Task<PollResponse> GetPollAsync(string pollId)
+        public async Task<Poll> GetPollAsync(string pollId)
         {
             var request = new GetPollRequest(pollId);
-            return await SendRequestAsync(request);
+            return (await SendRequestAsync(request)).Poll;
         }
 
         private async Task<T> SendRequestAsync<T>(BaseRequest<T> request)

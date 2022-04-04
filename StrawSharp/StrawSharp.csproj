@@ -4,8 +4,22 @@
     <TargetFrameworks>netstandard2.0;net6.0;</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>AppeazeTheCheese</Authors>
-    <PackageIcon>strawsharp-icon2.png</PackageIcon>
+    <PackageIcon>strawsharp-icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/AppeazeTheCheese/StrawSharp</RepositoryUrl>
+    <PackageTags>strawpoll;straw poll;poll;polls;csharp;get;create;</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="strawsharp-icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="strawsharp-icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Macross.Json.Extensions" Version="2.2.0" />

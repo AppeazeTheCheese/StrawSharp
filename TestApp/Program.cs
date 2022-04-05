@@ -1,8 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using StrawSharp;
 using StrawSharp.Helpers;
-using StrawSharp.Requests;
+using StrawSharp.Models;
 
 namespace TestApp
 {
@@ -14,24 +15,32 @@ namespace TestApp
         {
             var client = new StrawPollClient();
 
+            // Upload Image
+            var imageName = "TestImage.png";
+            var imagePath = Path.Combine(AppContext.BaseDirectory, imageName);
+            PollMedia uploadMediaResponse;
+            await using (var file = File.OpenRead(imagePath))
+            {
+                uploadMediaResponse = await client.UploadMediaAsync(imageName, file);
+            }
+
             // Create Poll
-#if true
             var poll = new PollBuilder()
                 .WithTitle("Test")
                 .WithDescription("StrawSharp Test")
                 .Private()
                 .MultipleChoice()
+                .WithMedia(uploadMediaResponse)
                 .WithOptions("Test 1", "Test 2", "Test 3")
                 .Build();
 
             var createPollResponse = await client.CreatePollAsync(poll);
-#endif
 
             // Get Poll
-#if true
             var getPollResponse = await client.GetPollAsync(createPollResponse.Id);
-#endif
 
+            // Delete Poll
+            var deletePollResponse = await client.DeletePollAsync(getPollResponse.Id);
             Console.Read();
         }
     }

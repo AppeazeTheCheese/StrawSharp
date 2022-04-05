@@ -32,8 +32,8 @@ namespace StrawSharp.Models
         public bool IsVotable { get; set; }
 
         [JsonPropertyName("media")]
-        [DefaultValue(typeof(PollMedia),null)]
-        public PollMedia Media { get; set; }
+        [DefaultValue(typeof(PollMedia), null)]
+        public PollMedia Media { get; set; } = new PollMedia();
 
         [JsonPropertyName("path")]
         [DefaultValue(null)]
@@ -41,7 +41,7 @@ namespace StrawSharp.Models
 
         [JsonPropertyName("pin_code")]
         [DefaultValue(null)]
-        public object PinCode { get; set; }
+        public int? PinCode { get; set; }
 
         [JsonPropertyName("poll_config")]
         [DefaultValue(typeof(PollConfig), null)]

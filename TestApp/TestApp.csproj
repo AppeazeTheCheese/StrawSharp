@@ -10,4 +10,10 @@
     <ProjectReference Include="..\StrawSharp\StrawSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestImage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

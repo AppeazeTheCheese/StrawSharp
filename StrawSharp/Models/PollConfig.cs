@@ -36,8 +36,10 @@ namespace StrawSharp.Models
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public EditVotePermission EditVotePermissions { get; set; } = EditVotePermission.Nobody;
 
-        [JsonPropertyName("force_appearance")] 
-        public object ForceAppearance { get; set; } = null;
+        [JsonPropertyName("force_appearance")]
+        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
+        [DefaultValue(ForceAppearance.Auto)]
+        public ForceAppearance ForceAppearance { get; set; } = ForceAppearance.Auto;
 
         [JsonPropertyName("hide_participants")]
         public bool HideParticipants { get; set; } = false;

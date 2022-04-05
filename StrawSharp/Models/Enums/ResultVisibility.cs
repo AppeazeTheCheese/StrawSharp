@@ -1,7 +1,9 @@
 ﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace StrawSharp.Models.Enums
 {
+    [JsonStringEnumMemberConverterOptions(deserializationFailureFallbackValue: Always)]
     public enum ResultVisibility
     {
         [EnumMember(Value = "always")]

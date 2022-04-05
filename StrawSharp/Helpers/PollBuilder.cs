@@ -14,6 +14,13 @@ namespace StrawSharp.Helpers
         private PollMeta _meta = new PollMeta();
         private List<PollOption> _options = new List<PollOption>();
 
+        public PollBuilder()
+        {
+
+        }
+
+        //TODO: Create constructor that takes a Poll as an argument and populates the builder with the info
+
         #region Configuration Properties
 
         public string Title

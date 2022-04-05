@@ -21,11 +21,10 @@ namespace StrawSharp.Models
         public bool AllowVpn { get; set; } = false;
 
         [JsonPropertyName("custom_design_colors")] 
-        public object DesignColors { get; set; } = null;
+        public PollCustomDesignColors CustomDesignColors { get; set; } = null;
 
         [JsonPropertyName("deadline_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        [DefaultValue(typeof(DateTime?), null)]
         public DateTime? Deadline { get; set; } = null;
 
         [JsonPropertyName("duplication_checking")]
@@ -38,7 +37,6 @@ namespace StrawSharp.Models
 
         [JsonPropertyName("force_appearance")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        [DefaultValue(ForceAppearance.Auto)]
         public ForceAppearance ForceAppearance { get; set; } = ForceAppearance.Auto;
 
         [JsonPropertyName("hide_participants")]

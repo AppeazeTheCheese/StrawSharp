@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using StrawSharp.Models;
 using StrawSharp.Models.Enums;
@@ -103,12 +104,106 @@ namespace StrawSharp.Helpers
             Config.AllowOtherOption = allow;
             return this;
         }
-
+        
         public PollBuilder AllowVpn(bool allow = true)
         {
             Config.AllowVpn = allow;
             return this;
         }
+
+        #region Poll Custom Design Colors
+
+        public PollBuilder WithBackgroundColor(Color color)
+        {
+            Config.CustomDesignColors.Background = color;
+            return this;
+        }
+
+        public PollBuilder WithBorderTableColor(Color color)
+        {
+            Config.CustomDesignColors.BorderTable = color;
+            return this;
+        }
+
+        public PollBuilder WithBorderTopColor(Color color)
+        {
+            Config.CustomDesignColors.BorderTop = color;
+            return this;
+        }
+
+        public PollBuilder WithHighlightColor(Color color)
+        {
+            Config.CustomDesignColors.Highlight = color;
+            return this;
+        }
+
+        public PollBuilder WithOptionColor(Color color)
+        {
+            Config.CustomDesignColors.Option = color;
+            return this;
+        }
+
+        public PollBuilder WithOptionBorderColor(Color color)
+        {
+            Config.CustomDesignColors.OptionBorder = color;
+            return this;
+        }
+
+        public PollBuilder WithPageBackgroundColor(Color color)
+        {
+            Config.CustomDesignColors.PageBackground = color;
+            return this;
+        }
+
+        public PollBuilder WithPrimaryBackgroundColor(Color color)
+        {
+            Config.CustomDesignColors.PrimaryBackground = color;
+            return this;
+        }
+
+        public PollBuilder WithPrimaryBorderColor(Color color)
+        {
+            Config.CustomDesignColors.PrimaryBorder = color;
+            return this;
+        }
+
+        public PollBuilder WithPrimaryTextColor(Color color)
+        {
+            Config.CustomDesignColors.PrimaryText = color;
+            return this;
+        }
+
+        public PollBuilder WithSecondaryBackgroundColor(Color color)
+        {
+            Config.CustomDesignColors.SecondaryBackground = color;
+            return this;
+        }
+
+        public PollBuilder WithSecondaryBorderColor(Color color)
+        {
+            Config.CustomDesignColors.SecondaryBorder = color;
+            return this;
+        }
+
+        public PollBuilder WithSecondaryTextColor(Color color)
+        {
+            Config.CustomDesignColors.SecondaryText = color;
+            return this;
+        }
+
+        public PollBuilder WithTextColor(Color color)
+        {
+            Config.CustomDesignColors.Text = color;
+            return this;
+        }
+
+        public PollBuilder WithTitleColor(Color color)
+        {
+            Config.CustomDesignColors.Title = color;
+            return this;
+        }
+
+        #endregion
 
         public PollBuilder WithDeadline(DateTime? deadline)
         {

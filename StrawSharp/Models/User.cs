@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
+using StrawSharp.Models.Enums;
 
 namespace StrawSharp.Models
 {
@@ -17,10 +18,10 @@ namespace StrawSharp.Models
         public string DisplayName { get; set; }
 
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        public UserStatus Status { get; set; }
 
         [JsonPropertyName("subscription")]
-        public string Subscription { get; set; }
+        public UserSubscription Subscription { get; set; }
 
         [JsonPropertyName("monthly_points")]
         public int MonthlyPoints { get; set; }

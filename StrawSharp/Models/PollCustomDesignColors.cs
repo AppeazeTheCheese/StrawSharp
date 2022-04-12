@@ -21,7 +21,7 @@ namespace StrawSharp.Models
         [JsonConverter(typeof(StringColorConverter))]
         public Color BorderTop { get; set; } = Color.FromArgb(251, 191, 36);
 
-        [JsonPropertyName("highlight")] 
+        [JsonPropertyName("highlight")]
         [JsonConverter(typeof(StringColorConverter))]
         public Color Highlight { get; set; } = Color.FromArgb(79, 70, 229);
 
@@ -65,8 +65,60 @@ namespace StrawSharp.Models
         [JsonConverter(typeof(StringColorConverter))]
         public Color Text { get; set; } = Color.FromArgb(107, 114, 128);
 
-        [JsonPropertyName("title")] 
+        [JsonPropertyName("title")]
         [JsonConverter(typeof(StringColorConverter))]
         public Color Title { get; set; } = Color.FromArgb(17, 24, 39);
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = Background.GetHashCode();
+                hashCode = (hashCode * 397) ^ BorderTable.GetHashCode();
+                hashCode = (hashCode * 397) ^ BorderTop.GetHashCode();
+                hashCode = (hashCode * 397) ^ Highlight.GetHashCode();
+                hashCode = (hashCode * 397) ^ Option.GetHashCode();
+                hashCode = (hashCode * 397) ^ OptionBorder.GetHashCode();
+                hashCode = (hashCode * 397) ^ PageBackground.GetHashCode();
+                hashCode = (hashCode * 397) ^ PrimaryBackground.GetHashCode();
+                hashCode = (hashCode * 397) ^ PrimaryBorder.GetHashCode();
+                hashCode = (hashCode * 397) ^ PrimaryText.GetHashCode();
+                hashCode = (hashCode * 397) ^ SecondaryBackground.GetHashCode();
+                hashCode = (hashCode * 397) ^ SecondaryBorder.GetHashCode();
+                hashCode = (hashCode * 397) ^ SecondaryText.GetHashCode();
+                hashCode = (hashCode * 397) ^ Text.GetHashCode();
+                hashCode = (hashCode * 397) ^ Title.GetHashCode();
+                return hashCode;
+            }
+        }
+        protected bool Equals(PollCustomDesignColors other)
+        {
+            return Background.Equals(other.Background) && BorderTable.Equals(other.BorderTable) &&
+                   BorderTop.Equals(other.BorderTop) && Highlight.Equals(other.Highlight) &&
+                   Option.Equals(other.Option) && OptionBorder.Equals(other.OptionBorder) &&
+                   PageBackground.Equals(other.PageBackground) && PrimaryBackground.Equals(other.PrimaryBackground) &&
+                   PrimaryBorder.Equals(other.PrimaryBorder) && PrimaryText.Equals(other.PrimaryText) &&
+                   SecondaryBackground.Equals(other.SecondaryBackground) &&
+                   SecondaryBorder.Equals(other.SecondaryBorder) && SecondaryText.Equals(other.SecondaryText) &&
+                   Text.Equals(other.Text) && Title.Equals(other.Title);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((PollCustomDesignColors)obj);
+        }
+
+        public static bool operator ==(PollCustomDesignColors left, PollCustomDesignColors right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(PollCustomDesignColors left, PollCustomDesignColors right)
+        {
+            return !Equals(left, right);
+        }
     }
 }

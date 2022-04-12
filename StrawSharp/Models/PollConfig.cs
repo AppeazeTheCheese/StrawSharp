@@ -20,8 +20,8 @@ namespace StrawSharp.Models
         [JsonPropertyName("allow_vpn_users")]
         public bool AllowVpn { get; set; } = false;
 
-        [JsonPropertyName("custom_design_colors")] 
-        public PollCustomDesignColors CustomDesignColors { get; set; } = null;
+        [JsonPropertyName("custom_design_colors")]
+        public PollCustomDesignColors CustomDesignColors { get; set; } = new PollCustomDesignColors();
 
         [JsonPropertyName("deadline_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]

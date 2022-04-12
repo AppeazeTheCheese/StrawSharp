@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using StrawSharp;
@@ -13,7 +14,7 @@ namespace TestApp
 
         static async Task Start()
         {
-            var client = new StrawPollClient();
+            var client = new StrawPollClient(/* Your API Key (if you have one) */);
 
             // Upload Image
             var imageName = "TestImage.png";
@@ -30,6 +31,7 @@ namespace TestApp
                 .WithDescription("StrawSharp Test")
                 .Private()
                 .MultipleChoice()
+                .WithBorderTableColor(Color.Red)
                 .WithMedia(uploadMediaResponse)
                 .WithOptions("Test 1", "Test 2", "Test 3")
                 .Build();

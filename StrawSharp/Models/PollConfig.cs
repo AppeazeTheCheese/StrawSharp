@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
 using StrawSharp.Models.Enums;
@@ -49,11 +48,9 @@ namespace StrawSharp.Models
         public bool IsPrivate { get; set; } = false;
 
         [JsonPropertyName("multiple_choice_min")]
-        [DefaultValue(null)]
         public int? MinChoices { get; set; } = null;
 
         [JsonPropertyName("multiple_choice_max")]
-        [DefaultValue(null)]
         public int? MaxChoices { get; set; } = null;
 
         [JsonPropertyName("number_of_winners")]
@@ -73,7 +70,6 @@ namespace StrawSharp.Models
         public bool UseCustomDesign { get; set; } = false;
 
         [JsonPropertyName("vote_type")]
-        [DefaultValue("default")]
-        public string VoteType { get; set; } = "default";
+        public VoteType VoteType { get; set; } = VoteType.Default;
     }
 }

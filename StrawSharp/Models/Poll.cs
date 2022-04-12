@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
+using StrawSharp.Models.Enums;
 
 namespace StrawSharp.Models
 {
@@ -57,8 +57,8 @@ namespace StrawSharp.Models
         [JsonPropertyName("slug")]
         public string Slug { get; set; }
 
-        [JsonPropertyName("status")]
-        public string Status { get; set; }
+        [JsonPropertyName("status")] 
+        public PollStatus Status { get; set; } = PollStatus.Published;
 
         [JsonPropertyName("title")]
         public string Title { get; set; }

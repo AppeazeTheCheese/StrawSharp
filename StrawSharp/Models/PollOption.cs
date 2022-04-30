@@ -9,7 +9,6 @@ namespace StrawSharp.Models
         public string Id { get; set; } = null;
 
         [JsonPropertyName("is_write_in")]
-        [JsonConverter(typeof(BoolConverter))]
         public bool IsWriteIn { get; set; } = false;
 
         [JsonPropertyName("max_votes")]

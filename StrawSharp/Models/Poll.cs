@@ -8,8 +8,6 @@ namespace StrawSharp.Models
 {
     public class Poll
     {
-        public Poll(){}
-
         [JsonPropertyName("created_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreatedAt { get; set; }
@@ -24,7 +22,6 @@ namespace StrawSharp.Models
         public bool ResultsAreVisible { get; set; }
 
         [JsonPropertyName("is_votable")]
-        [JsonConverter(typeof(BoolConverter))]
         public bool IsVotable { get; set; }
 
         [JsonPropertyName("media")]
@@ -58,6 +55,7 @@ namespace StrawSharp.Models
         public string Slug { get; set; }
 
         [JsonPropertyName("status")] 
+        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public PollStatus Status { get; set; } = PollStatus.Published;
 
         [JsonPropertyName("title")]

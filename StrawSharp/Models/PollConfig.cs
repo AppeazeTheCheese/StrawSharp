@@ -54,7 +54,7 @@ namespace StrawSharp.Models
         public int? MaxChoices { get; set; } = null;
 
         [JsonPropertyName("number_of_winners")]
-        public int Winners { get; set; }
+        public int? Winners { get; set; }
 
         [JsonPropertyName("randomize_options")] 
         public bool RandomizeOptions { get; set; } = false;
@@ -70,6 +70,67 @@ namespace StrawSharp.Models
         public bool UseCustomDesign { get; set; } = false;
 
         [JsonPropertyName("vote_type")]
+        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public VoteType VoteType { get; set; } = VoteType.Default;
+
+        protected bool Equals(PollConfig other)
+        {
+            return AllowComments == other.AllowComments && AllowIndeterminate == other.AllowIndeterminate &&
+                   AllowOtherOption == other.AllowOtherOption && AllowVpn == other.AllowVpn &&
+                   Equals(CustomDesignColors, other.CustomDesignColors) && Nullable.Equals(Deadline, other.Deadline) &&
+                   DuplicationChecking == other.DuplicationChecking &&
+                   EditVotePermissions == other.EditVotePermissions && ForceAppearance == other.ForceAppearance &&
+                   HideParticipants == other.HideParticipants && IsMultipleChoice == other.IsMultipleChoice &&
+                   IsPrivate == other.IsPrivate && MinChoices == other.MinChoices && MaxChoices == other.MaxChoices &&
+                   Winners == other.Winners && RandomizeOptions == other.RandomizeOptions &&
+                   RequireName == other.RequireName && ResultVisibility == other.ResultVisibility &&
+                   UseCustomDesign == other.UseCustomDesign && VoteType == other.VoteType;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((PollConfig)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = AllowComments.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowIndeterminate.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowOtherOption.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowVpn.GetHashCode();
+                hashCode = (hashCode * 397) ^ (CustomDesignColors != null ? CustomDesignColors.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Deadline.GetHashCode();
+                hashCode = (hashCode * 397) ^ (int)DuplicationChecking;
+                hashCode = (hashCode * 397) ^ (int)EditVotePermissions;
+                hashCode = (hashCode * 397) ^ (int)ForceAppearance;
+                hashCode = (hashCode * 397) ^ HideParticipants.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsMultipleChoice.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsPrivate.GetHashCode();
+                hashCode = (hashCode * 397) ^ MinChoices.GetHashCode();
+                hashCode = (hashCode * 397) ^ MaxChoices.GetHashCode();
+                hashCode = (hashCode * 397) ^ Winners.GetHashCode();
+                hashCode = (hashCode * 397) ^ RandomizeOptions.GetHashCode();
+                hashCode = (hashCode * 397) ^ RequireName.GetHashCode();
+                hashCode = (hashCode * 397) ^ (int)ResultVisibility;
+                hashCode = (hashCode * 397) ^ UseCustomDesign.GetHashCode();
+                hashCode = (hashCode * 397) ^ (int)VoteType;
+                return hashCode;
+            }
+        }
+
+        public static bool operator ==(PollConfig left, PollConfig right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(PollConfig left, PollConfig right)
+        {
+            return !Equals(left, right);
+        }
     }
 }

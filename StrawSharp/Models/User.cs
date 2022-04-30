@@ -18,9 +18,11 @@ namespace StrawSharp.Models
         public string DisplayName { get; set; }
 
         [JsonPropertyName("status")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public UserStatus Status { get; set; }
 
         [JsonPropertyName("subscription")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public UserSubscription Subscription { get; set; }
 
         [JsonPropertyName("monthly_points")]

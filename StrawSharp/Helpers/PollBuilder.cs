@@ -65,7 +65,7 @@ namespace StrawSharp.Helpers
 
         public PollBuilder WithTitle(string title)
         {
-            _title = title;
+            Title = title;
             return this;
         }
 

@@ -33,6 +33,15 @@ namespace StrawSharp
 
         #region Polls
 
+        public async Task<PollListResponse> GetMyPollsAsync(int limit = 10, int page = 1)
+        {
+            var endpoint = $"{ApiConstants.Endpoints.MyPolls}?page={page}&limit={limit}";
+            var method = HttpMethod.Get;
+
+            var response = await SendRestRequestAsync<PollListResponse>(endpoint, method);
+            return response;
+        }
+
         public async Task<Poll> GetPollAsync(string pollId)
         {
             var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
@@ -56,11 +65,11 @@ namespace StrawSharp
             var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
             var method = HttpMethod.Put;
 
-            var response = await SendRestRequestAsync<PollResponse>(endpoint, method);
+            var response = await SendRestRequestAsync<PollResponse>(endpoint, method, poll);
             return response.Poll;
         }
 
-        public async Task<Poll> UpdatePollAsybc(Poll poll)
+        public async Task<Poll> UpdatePollAsync(Poll poll)
         {
             if (string.IsNullOrWhiteSpace(poll.Id))
                 throw new ArgumentException(
@@ -71,7 +80,7 @@ namespace StrawSharp
 
         public async Task<MessageResponse> DeletePollAsync(string pollId)
         {
-            var endpoint = ApiConstants.Endpoints.Polls;
+            var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
             var method = HttpMethod.Delete;
 
             return await SendRestRequestAsync<MessageResponse>(endpoint, method);

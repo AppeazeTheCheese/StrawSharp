@@ -8,6 +8,7 @@
         {
             internal const string Polls = "polls";
             internal const string Media = "media";
+            internal const string MyPolls = "users/@me/polls";
             internal const string Comments = "comments";
         }
     }

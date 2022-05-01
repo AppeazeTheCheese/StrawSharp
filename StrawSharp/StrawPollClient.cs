@@ -6,15 +6,15 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using StrawSharp.Models;
-using StrawSharp.Responses;
+using StrawSharp.Models.PollModels;
+using StrawSharp.Models.ResponseModels;
 
 namespace StrawSharp
 {
     public class StrawPollClient
     {
         private readonly string _apiKey;
-        private static readonly HttpClient Client = new HttpClient {BaseAddress = new Uri(ApiConstants.ApiBase)};
+        private static readonly HttpClient Client = new HttpClient { BaseAddress = new Uri(ApiConstants.ApiBase) };
 
         public static string GetPollUrl(string pollId) => $"https://strawpoll.com/polls/{pollId}";
 
@@ -47,8 +47,8 @@ namespace StrawSharp
             var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
             var method = HttpMethod.Get;
 
-            var response = await SendRestRequestAsync<PollResponse>(endpoint, method);
-            return response.Poll;
+            var response = await SendRestRequestAsync<Poll>(endpoint, method);
+            return response;
         }
 
         public async Task<Poll> CreatePollAsync(Poll poll)
@@ -56,8 +56,8 @@ namespace StrawSharp
             var endpoint = ApiConstants.Endpoints.Polls;
             var method = HttpMethod.Post;
 
-            var response = await SendRestRequestAsync<PollResponse>(endpoint, method, poll);
-            return response.Poll;
+            var response = await SendRestRequestAsync<Poll>(endpoint, method, poll);
+            return response;
         }
 
         public async Task<Poll> UpdatePollAsync(string pollId, Poll poll)
@@ -65,8 +65,8 @@ namespace StrawSharp
             var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
             var method = HttpMethod.Put;
 
-            var response = await SendRestRequestAsync<PollResponse>(endpoint, method, poll);
-            return response.Poll;
+            var response = await SendRestRequestAsync<Poll>(endpoint, method, poll);
+            return response;
         }
 
         public async Task<Poll> UpdatePollAsync(Poll poll)
@@ -78,12 +78,12 @@ namespace StrawSharp
             return await UpdatePollAsync(poll.Id, poll);
         }
 
-        public async Task<MessageResponse> DeletePollAsync(string pollId)
+        public async Task DeletePollAsync(string pollId)
         {
             var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
             var method = HttpMethod.Delete;
 
-            return await SendRestRequestAsync<MessageResponse>(endpoint, method);
+            await SendRestRequestAsync(endpoint, method);
         }
 
         #endregion
@@ -92,11 +92,11 @@ namespace StrawSharp
 
         public async Task<PollMedia> UploadMediaAsync(string fileName, Stream fileStream)
         {
-            var endpoint = ApiConstants.Endpoints.Media;
+            var endpoint = ApiConstants.Endpoints.Upload;
 
             fileStream.Seek(0, SeekOrigin.Begin);
-            var streamContent = new StreamContent(fileStream);
-            streamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+            var fileContent = new StreamContent(fileStream);
+            fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
                 Name = "\"file\"",
                 FileName = $"\"{fileName ?? "file"}\""
@@ -104,11 +104,11 @@ namespace StrawSharp
 
             var formData = new MultipartFormDataContent
             {
-                streamContent
+                fileContent,
             };
 
-            var response = await PostHttpContentAsync<MediaResponse>(formData, endpoint);
-            return response.Media;
+            var response = await PostHttpContentAsync<PollMedia>(formData, endpoint);
+            return response;
         }
 
         public async Task<PollMedia> UploadMediaAsync(string fileName, byte[] content)
@@ -119,6 +119,26 @@ namespace StrawSharp
         #endregion
 
         #region Request Handling
+
+        private async Task SendRestRequestAsync(string endpoint, HttpMethod method, object data = null)
+        {
+            var message = new HttpRequestMessage
+            {
+                RequestUri = new Uri(endpoint, UriKind.Relative),
+                Method = method
+            };
+
+            if (_apiKey != null)
+                message.Headers.Add("X-API-KEY", _apiKey);
+
+            if (data != null)
+            {
+                var content = JsonSerializer.Serialize(data);
+                message.Content = new StringContent(content, Encoding.ASCII, "application/json");
+            }
+
+            await Client.SendAsync(message);
+        }
 
         private async Task<T> SendRestRequestAsync<T>(string endpoint, HttpMethod method, object data = null)
         {
@@ -150,18 +170,26 @@ namespace StrawSharp
             return await HandleResponseAsync<T>(response);
         }
 
+        private static async Task HandleResponseAsync(HttpResponseMessage message)
+        {
+            var responseText = await message.Content.ReadAsStringAsync();
+            if (!message.IsSuccessStatusCode)
+            {
+                var response = JsonSerializer.Deserialize<ErrorResponse>(responseText);
+                throw new StrawPollException(message.StatusCode, response);
+            }
+        }
 
         private static async Task<T> HandleResponseAsync<T>(HttpResponseMessage message)
         {
             var responseText = await message.Content.ReadAsStringAsync();
             if (!message.IsSuccessStatusCode)
-                throw new WebException($"The StrawPoll server returned code {message.StatusCode}: {responseText}");
+            {
+                var response = JsonSerializer.Deserialize<ErrorResponse>(responseText);
+                throw new StrawPollException(message.StatusCode, response);
+            }
 
-            var resp = JsonSerializer.Deserialize<BaseResponse>(responseText);
-            if (typeof(T) == typeof(MessageResponse) || (resp?.Success ?? false)) // Don't throw an error if a MessageResponse is the expected type
-                return JsonSerializer.Deserialize<T>(responseText);
-
-            throw new StrawPollException(JsonSerializer.Deserialize<MessageResponse>(responseText));
+            return JsonSerializer.Deserialize<T>(responseText);
         }
 
         #endregion

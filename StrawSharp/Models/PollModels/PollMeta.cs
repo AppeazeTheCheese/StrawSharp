@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
 
-namespace StrawSharp.Models
+namespace StrawSharp.Models.PollModels
 {
     public class PollMeta
     {

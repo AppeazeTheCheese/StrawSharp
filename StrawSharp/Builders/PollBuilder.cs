@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using StrawSharp.Models;
 using StrawSharp.Models.Enums;
+using StrawSharp.Models.PollModels;
+using StrawSharp.Models.PollModels.Options;
 
-namespace StrawSharp.Helpers
+namespace StrawSharp.Builders
 {
     public class PollBuilder
     {
@@ -299,14 +300,24 @@ namespace StrawSharp.Helpers
             return this;
         }
 
-        public PollBuilder WithOptions(IEnumerable<string> options)
+        public PollBuilder WithTextOptions(IEnumerable<string> options)
         {
-            return WithOptions(options.Select(x => new PollOption { Value = x }));
+            return WithOptions(options.Select(x => new TextPollOption { Value = x }));
         }
 
-        public PollBuilder WithOptions(params string[] options)
+        public PollBuilder WithTextOptions(params string[] options)
         {
-            return WithOptions(options.AsEnumerable());
+            return WithTextOptions(options.AsEnumerable());
+        }
+
+        public PollBuilder WithDateOptions(IEnumerable<DateTime> options)
+        {
+            return WithOptions(options.Select(x => new DatePollOption {Date = x}));
+        }
+
+        public PollBuilder WithDateOptions(params DateTime[] options)
+        {
+            return WithDateOptions(options.AsEnumerable());
         }
 
         #endregion
@@ -319,14 +330,39 @@ namespace StrawSharp.Helpers
             return this;
         }
 
-        public PollBuilder AddOptions(IEnumerable<string> options)
-        {
-            return AddOptions(options.Select(x => new PollOption { Value = x }));
-        }
-
-        public PollBuilder AddOptions(params string[] options)
+        public PollBuilder AddOptions(params PollOption[] options)
         {
             return AddOptions(options.AsEnumerable());
+        }
+
+        public PollBuilder AddTextOptions(IEnumerable<string> options)
+        {
+            return AddOptions(options.Select(x => new TextPollOption { Value = x }));
+        }
+
+        public PollBuilder AddTextOptions(params string[] options)
+        {
+            return AddTextOptions(options.AsEnumerable());
+        }
+
+        public PollBuilder AddImageOption(PollMedia media, string caption)
+        {
+            return AddOptions(new ImagePollOption {Media = media, Value = caption});
+        }
+
+        public PollBuilder AddDateOptions(IEnumerable<DateTime> dates)
+        {
+            return AddOptions(dates.Select(x => new DatePollOption {Date = x}));
+        }
+
+        public PollBuilder AddDateOptions(params DateTime[] dates)
+        {
+            return AddDateOptions(dates.AsEnumerable());
+        }
+
+        public PollBuilder AddTimeRangeOption(DateTime startTime, DateTime endTime)
+        {
+            return AddOptions(new TimeRangePollOption {StartTime = startTime, EndTime = endTime});
         }
 
         #endregion
@@ -340,17 +376,6 @@ namespace StrawSharp.Helpers
         }
 
         public PollBuilder RemoveOptions(params PollOption[] options)
-        {
-            return RemoveOptions(options.AsEnumerable());
-        }
-
-        public PollBuilder RemoveOptions(IEnumerable<string> options)
-        {
-            Options.RemoveAll(x => options.Contains(x.Value));
-            return this;
-        }
-
-        public PollBuilder RemoveOptions(params string[] options)
         {
             return RemoveOptions(options.AsEnumerable());
         }

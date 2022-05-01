@@ -3,8 +3,8 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using StrawSharp;
-using StrawSharp.Helpers;
-using StrawSharp.Models;
+using StrawSharp.Builders;
+using StrawSharp.Models.PollModels;
 
 namespace TestApp
 {
@@ -31,9 +31,9 @@ namespace TestApp
                 .WithDescription("StrawSharp Test")
                 .Private()
                 .MultipleChoice()
-                .WithBorderTableColor(Color.Red)
+                .WithTitleColor(Color.Red)
                 .WithMedia(uploadMediaResponse)
-                .WithOptions("Test 1", "Test 2", "Test 3")
+                .WithTextOptions("Test 1", "Test 2", "Test 3")
                 .Build();
 
             var createPollResponse = await client.CreatePollAsync(poll);
@@ -42,7 +42,7 @@ namespace TestApp
             var getPollResponse = await client.GetPollAsync(createPollResponse.Id);
 
             // Delete Poll
-            var deletePollResponse = await client.DeletePollAsync(getPollResponse.Id);
+            await client.DeletePollAsync(getPollResponse.Id);
             Console.Read();
         }
     }

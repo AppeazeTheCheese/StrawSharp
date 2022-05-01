@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace StrawSharp.Models
+namespace StrawSharp.Models.UserModels
 {
     public class UserMeta
     {

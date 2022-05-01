@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
 using StrawSharp.Models.Enums;
 
-namespace StrawSharp.Models
+namespace StrawSharp.Models.PollModels
 {
     public class PollConfig
     {

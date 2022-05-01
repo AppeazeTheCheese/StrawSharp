@@ -1,12 +1,19 @@
 ﻿using System.Text.Json.Serialization;
-using StrawSharp.JsonConverters;
+using StrawSharp.Models.Enums;
 
-namespace StrawSharp.Models
+namespace StrawSharp.Models.PollModels.Options
 {
     public class PollOption
     {
         [JsonPropertyName("id")]
         public string Id { get; set; } = null;
+
+        [JsonPropertyName("type")]
+        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
+        public virtual PollType Type { get; set; }
+
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
 
         [JsonPropertyName("is_write_in")]
         public bool IsWriteIn { get; set; } = false;
@@ -17,13 +24,12 @@ namespace StrawSharp.Models
         [JsonPropertyName("position")]
         public int Position { get; set; } = 0;
 
-        [JsonPropertyName("secondary")]
-        public object Secondary { get; set; } = null;
-
-        [JsonPropertyName("value")]
-        public string Value { get; set; } = null;
-
         [JsonPropertyName("vote_count")]
         public int VoteCount { get; set; } = 0;
+
+        public PollOption()
+        {
+
+        }
     }
 }

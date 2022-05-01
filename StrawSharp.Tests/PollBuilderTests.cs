@@ -1,8 +1,8 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StrawSharp.Helpers;
-using StrawSharp.Models;
+using StrawSharp.Builders;
 using StrawSharp.Models.Enums;
+using StrawSharp.Models.PollModels;
 
 namespace StrawSharp.Tests
 {

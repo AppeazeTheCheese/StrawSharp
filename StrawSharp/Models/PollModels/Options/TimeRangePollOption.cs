@@ -9,7 +9,7 @@ namespace StrawSharp.Models.PollModels.Options
     {
         [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public override PollType Type => PollType.TimeRange;
+        public override OptionType Type => OptionType.TimeRange;
 
         [JsonPropertyName("start_time")]
         [JsonConverter(typeof(UnixDateTimeConverter))]

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using StrawSharp.Models.Enums;
 using StrawSharp.Models.PollModels.Options;
@@ -21,16 +19,16 @@ namespace StrawSharp.JsonConverters
                     var pollOption = option.Deserialize<PollOption>();
                     switch (pollOption.Type)
                     {
-                        case PollType.Text:
+                        case OptionType.Text:
                             pollOptions.Add(option.Deserialize<TextPollOption>());
                             break;
-                        case PollType.Image:
+                        case OptionType.Image:
                             pollOptions.Add(option.Deserialize<ImagePollOption>());
                             break;
-                        case PollType.Date:
+                        case OptionType.Date:
                             pollOptions.Add(option.Deserialize<DatePollOption>());
                             break;
-                        case PollType.TimeRange:
+                        case OptionType.TimeRange:
                             pollOptions.Add(option.Deserialize<TimeRangePollOption>());
                             break;
                         default:
@@ -51,16 +49,16 @@ namespace StrawSharp.JsonConverters
                 string rawValue;
                 switch (option.Type)
                 {
-                    case PollType.Text:
+                    case OptionType.Text:
                         rawValue = JsonSerializer.Serialize((TextPollOption)option);
                         break;
-                    case PollType.Image:
+                    case OptionType.Image:
                         rawValue = JsonSerializer.Serialize((ImagePollOption)option);
                         break;
-                    case PollType.Date:
+                    case OptionType.Date:
                         rawValue = JsonSerializer.Serialize((DatePollOption)option);
                         break;
-                    case PollType.TimeRange:
+                    case OptionType.TimeRange:
                         rawValue = JsonSerializer.Serialize((TimeRangePollOption)option);
                         break;
                     default:

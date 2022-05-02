@@ -10,6 +10,8 @@ namespace StrawSharp.Models.Enums
         Ip,
         [EnumMember(Value = "session")]
         Session,
+        [EnumMember(Value = "invite")]
+        Invite,
         [EnumMember(Value = "none")]
         None
     }

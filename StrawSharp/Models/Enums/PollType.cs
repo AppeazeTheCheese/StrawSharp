@@ -4,13 +4,11 @@ namespace StrawSharp.Models.Enums
 {
     public enum PollType
     {
-        [EnumMember(Value = "text")]
-        Text,
-        [EnumMember(Value = "image")]
-        Image,
-        [EnumMember(Value = "date")]
-        Date,
-        [EnumMember(Value = "time_range")]
-        TimeRange
+        [EnumMember(Value = "multiple_choice")]
+        MultipleChoice,
+        [EnumMember(Value = "meeting")]
+        Meeting,
+        [EnumMember(Value = "ranked_choice")]
+        RankedChoice
     }
 }

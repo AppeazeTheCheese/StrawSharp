@@ -9,7 +9,7 @@ namespace StrawSharp.Models.PollModels.Options
     {
         [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public override PollType Type => PollType.Date;
+        public override OptionType Type => OptionType.Date;
 
         [JsonPropertyName("date")]
         [JsonConverter(typeof(StringDateTimeConverter))]

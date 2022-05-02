@@ -7,7 +7,7 @@ namespace StrawSharp.Models.PollModels.Options
     {
         [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public override PollType Type => PollType.Text;
+        public override OptionType Type => OptionType.Text;
 
         [JsonPropertyName("value")]
         public string Value { get; set; }

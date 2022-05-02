@@ -10,7 +10,7 @@ namespace StrawSharp.Models.PollModels.Options
 
         [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public virtual PollType Type { get; set; }
+        public virtual OptionType Type { get; set; }
 
         [JsonPropertyName("description")]
         public string Description { get; set; }
@@ -26,10 +26,5 @@ namespace StrawSharp.Models.PollModels.Options
 
         [JsonPropertyName("vote_count")]
         public int VoteCount { get; set; } = 0;
-
-        public PollOption()
-        {
-
-        }
     }
 }

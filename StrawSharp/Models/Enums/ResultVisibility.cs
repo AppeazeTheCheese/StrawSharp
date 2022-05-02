@@ -10,6 +10,8 @@ namespace StrawSharp.Models.Enums
         Always,
         [EnumMember(Value = "after_deadline")]
         AfterDeadline,
+        [EnumMember(Value = "after_vote")]
+        AfterVote,
         [EnumMember(Value = "hidden")]
         Never
     }

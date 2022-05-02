@@ -7,6 +7,9 @@ namespace StrawSharp.Models.UserModels
         [JsonPropertyName("about")]
         public string About { get; set; }
 
+        [JsonPropertyName("website")]
+        public string Website { get; set; }
+
         [JsonPropertyName("country_code")]
         public string CountryCode { get; set; }
 
@@ -15,9 +18,6 @@ namespace StrawSharp.Models.UserModels
 
         [JsonPropertyName("total_points")]
         public int TotalPoints { get; set; }
-
-        [JsonPropertyName("website")]
-        public string Website { get; set; }
 
         protected bool Equals(UserMeta other)
         {

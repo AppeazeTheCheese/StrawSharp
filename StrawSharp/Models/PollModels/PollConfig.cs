@@ -7,6 +7,10 @@ namespace StrawSharp.Models.PollModels
 {
     public class PollConfig
     {
+        [JsonPropertyName("vote_type")]
+        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
+        public VoteType VoteType { get; set; } = VoteType.Default;
+
         [JsonPropertyName("allow_comments")]
         public bool AllowComments { get; set; } = false;
 
@@ -69,10 +73,6 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("use_custom_design")] 
         public bool UseCustomDesign { get; set; } = false;
 
-        [JsonPropertyName("vote_type")]
-        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public VoteType VoteType { get; set; } = VoteType.Default;
-
         protected bool Equals(PollConfig other)
         {
             return AllowComments == other.AllowComments && AllowIndeterminate == other.AllowIndeterminate &&
@@ -92,7 +92,7 @@ namespace StrawSharp.Models.PollModels
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((PollConfig)obj);
+            return Equals((PollConfig) obj);
         }
 
         public override int GetHashCode()

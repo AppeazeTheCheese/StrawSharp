@@ -7,7 +7,7 @@ namespace StrawSharp.Models.PollModels.Options
     {
         [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public override PollType Type => PollType.Image;
+        public override OptionType Type => OptionType.Image;
 
         [JsonPropertyName("media")]
         public PollMedia Media { get; set; }

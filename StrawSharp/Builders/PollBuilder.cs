@@ -114,6 +114,12 @@ namespace StrawSharp.Builders
 
         #region Poll Custom Design Colors
 
+        public PollBuilder UseCustomDesign(bool customColors = true)
+        {
+            Config.UseCustomDesign = customColors;
+            return this;
+        }
+
         public PollBuilder WithBackgroundColor(Color color)
         {
             Config.CustomDesignColors.Background = color;

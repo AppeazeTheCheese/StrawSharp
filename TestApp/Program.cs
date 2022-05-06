@@ -31,6 +31,7 @@ namespace TestApp
                 .WithDescription("StrawSharp Test")
                 .Private()
                 .MultipleChoice()
+                .UseCustomDesign()
                 .WithTitleColor(Color.Red)
                 .WithMedia(uploadMediaResponse)
                 .WithTextOptions("Test 1", "Test 2", "Test 3")

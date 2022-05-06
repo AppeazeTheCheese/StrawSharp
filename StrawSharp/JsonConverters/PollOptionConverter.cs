@@ -70,30 +70,5 @@ namespace StrawSharp.JsonConverters
             }
             writer.WriteEndArray();
         }
-
-        //public override void Write(Utf8JsonWriter writer, PollOption value, JsonSerializerOptions options)
-        //{
-        //    string rawValue;
-        //    switch (value.Type)
-        //    {
-        //        case PollType.Text:
-        //            rawValue = JsonSerializer.Serialize((TextPollOption)value);
-        //            break;
-        //        case PollType.Image:
-        //            rawValue = JsonSerializer.Serialize((ImagePollOption)value);
-        //            break;
-        //        case PollType.Date:
-        //            rawValue = JsonSerializer.Serialize((DatePollOption)value);
-        //            break;
-        //        case PollType.TimeRange:
-        //            rawValue = JsonSerializer.Serialize((TimeRangePollOption)value);
-        //            break;
-        //        default:
-        //            rawValue = JsonSerializer.Serialize(value);
-        //            break;
-        //    }
-
-        //    writer.WriteRawValue(rawValue);
-        //}
     }
 }

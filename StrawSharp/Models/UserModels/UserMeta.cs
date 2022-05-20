@@ -19,6 +19,18 @@ namespace StrawSharp.Models.UserModels
         [JsonPropertyName("total_points")]
         public int TotalPoints { get; set; }
 
+        public UserMeta() { }
+
+        public UserMeta(UserMeta other)
+        {
+            if (other == null) return;
+            About = other.About;
+            Website = other.Website;
+            CountryCode = other.CountryCode;
+            MonthlyPoints = other.MonthlyPoints;
+            TotalPoints = other.TotalPoints;
+        }
+
         protected bool Equals(UserMeta other)
         {
             return About == other.About && CountryCode == other.CountryCode && MonthlyPoints == other.MonthlyPoints &&

@@ -66,7 +66,7 @@ namespace StrawSharp.Tests
         [TestMethod]
         public void WithMedia_Instance_SetProperty()
         {
-            var media = new PollMedia {Id = "Foo", Path = "/Bar"};
+            var media = new PollMedia {Id = "Foo"};
             _pollBuilder.WithMedia(media);
             Assert.AreSame(media, _pollBuilder.Media);
         }

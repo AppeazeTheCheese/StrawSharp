@@ -10,5 +10,7 @@ namespace StrawSharp.Models.ResponseModels
 
         [JsonPropertyName("pagination")]
         public Pagination Pagination { get; set; }
+
+        public PollListResponse() { }
     }
 }

@@ -21,9 +21,19 @@ namespace StrawSharp.Builders
 
         }
 
-        //TODO: Create constructor that takes a Poll as an argument and populates the builder with the info
+        public static PollBuilder From(Poll poll)
+        {
+            if (poll == null) throw new ArgumentNullException(nameof(poll));
 
-        #region Configuration Properties
+            return new PollBuilder
+            {
+                Title = poll.Title,
+                Media = new PollMedia(poll.Media),
+                Config = new PollConfig(poll.Config),
+                Meta = new PollMeta(poll.Meta),
+                Options = poll.Options.Select(x => (PollOption)Activator.CreateInstance(x.GetType(), x)).ToList()
+            };
+        }
 
         public string Title
         {
@@ -60,17 +70,11 @@ namespace StrawSharp.Builders
             set => _options = value ?? new List<PollOption>();
         }
 
-        #endregion
-
-        #region Configuration Methods
-
         public PollBuilder WithTitle(string title)
         {
             Title = title;
             return this;
         }
-
-        #region Media
 
         public PollBuilder WithMediaId(string mediaId)
         {
@@ -83,10 +87,6 @@ namespace StrawSharp.Builders
             Media = media;
             return this;
         }
-
-        #endregion
-
-        #region Config
 
         public PollBuilder AllowComments(bool allow = true)
         {
@@ -111,8 +111,6 @@ namespace StrawSharp.Builders
             Config.AllowVpn = allow;
             return this;
         }
-
-        #region Poll Custom Design Colors
 
         public PollBuilder UseCustomDesign(bool customColors = true)
         {
@@ -210,8 +208,6 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        #endregion
-
         public PollBuilder WithDeadline(DateTime? deadline)
         {
             Config.Deadline = deadline;
@@ -278,10 +274,6 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        #endregion
-
-        #region Meta
-
         public PollBuilder WithDescription(string description)
         {
             Meta.Description = description;
@@ -293,12 +285,6 @@ namespace StrawSharp.Builders
             Meta = meta;
             return this;
         }
-
-        #endregion
-
-        #region Options
-
-        #region Set Options
 
         public PollBuilder WithOptions(IEnumerable<PollOption> options)
         {
@@ -325,10 +311,6 @@ namespace StrawSharp.Builders
         {
             return WithDateOptions(options.AsEnumerable());
         }
-
-        #endregion
-
-        #region Add Options
 
         public PollBuilder AddOptions(IEnumerable<PollOption> options)
         {
@@ -371,10 +353,6 @@ namespace StrawSharp.Builders
             return AddOptions(new TimeRangePollOption {StartTime = startTime, EndTime = endTime});
         }
 
-        #endregion
-
-        #region Remove Options
-
         public PollBuilder RemoveOptions(IEnumerable<PollOption> options)
         {
             Options.RemoveAll(options.Contains);
@@ -391,12 +369,6 @@ namespace StrawSharp.Builders
             Options.Clear();
             return this;
         }
-
-        #endregion
-
-        #endregion
-
-        #endregion
 
         public Poll Build()
         {

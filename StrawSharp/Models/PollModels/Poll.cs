@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
 using StrawSharp.Models.Enums;
@@ -62,12 +63,37 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("results_path")]
         public string ResultsPath { get; set; }
 
-        [JsonPropertyName("status")] 
+        [JsonPropertyName("status")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public PollStatus Status { get; set; } = PollStatus.Published;
 
         [JsonPropertyName("url")]
         public string Url { get; set; }
+        
+        public Poll() { }
+
+        public Poll(Poll other)
+        {
+            if (other == null) return;
+            Id = other.Id;
+            Title = other.Title;
+            User = new User(other.User);
+            Media = new PollMedia(other.Media);
+            Options = other.Options.Select(x => (PollOption) Activator.CreateInstance(x.GetType(), x)).ToList();
+            Config = new PollConfig(other.Config);
+            Meta = new PollMeta(other.Meta);
+            Type = other.Type;
+            Version = other.Version;
+            CreatedAt = other.CreatedAt;
+            UpdatedAt = other.UpdatedAt;
+            ResetAt = other.ResetAt;
+            Path = other.Path;
+            Slug = other.Slug;
+            PinCode = other.PinCode;
+            ResultsPath = other.ResultsPath;
+            Status = other.Status;
+            Url = other.Url;
+        }
 
         protected bool Equals(Poll other)
         {

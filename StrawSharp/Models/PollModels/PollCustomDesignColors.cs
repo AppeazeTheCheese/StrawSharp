@@ -66,6 +66,28 @@ namespace StrawSharp.Models.PollModels
         [JsonConverter(typeof(StringColorConverter))]
         public Color Title { get; set; } = Color.FromArgb(17, 24, 39);
 
+        public PollCustomDesignColors() { }
+
+        public PollCustomDesignColors(PollCustomDesignColors other)
+        {
+            if (other == null) return;
+            Background = other.Background;
+            BorderTable = other.BorderTable;
+            BorderTop = other.BorderTop;
+            Highlight = other.Highlight;
+            Option = other.Option;
+            OptionBorder = other.OptionBorder;
+            PageBackground = other.PageBackground;
+            PrimaryBackground = other.PrimaryBackground;
+            PrimaryBorder = other.PrimaryBorder;
+            PrimaryText = other.PrimaryText;
+            SecondaryBackground = other.SecondaryBackground;
+            SecondaryBorder = other.SecondaryBorder;
+            SecondaryText = other.SecondaryText;
+            Text = other.Text;
+            Title = other.Title;
+        }
+
         public override int GetHashCode()
         {
             unchecked

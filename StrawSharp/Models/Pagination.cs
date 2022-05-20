@@ -12,5 +12,7 @@ namespace StrawSharp.Models
 
         [JsonPropertyName("page")]
         public int Page { get; set; }
+
+        public Pagination() { }
     }
 }

@@ -60,7 +60,7 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("number_of_winners")]
         public int? Winners { get; set; }
 
-        [JsonPropertyName("randomize_options")] 
+        [JsonPropertyName("randomize_options")]
         public bool RandomizeOptions { get; set; } = false;
 
         [JsonPropertyName("require_voter_names")]
@@ -70,8 +70,35 @@ namespace StrawSharp.Models.PollModels
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public ResultVisibility ResultVisibility { get; set; } = ResultVisibility.Always;
 
-        [JsonPropertyName("use_custom_design")] 
+        [JsonPropertyName("use_custom_design")]
         public bool UseCustomDesign { get; set; } = false;
+
+        public PollConfig() { }
+
+        public PollConfig(PollConfig other)
+        {
+            if (other == null) return;
+            VoteType = other.VoteType;
+            AllowComments = other.AllowComments;
+            AllowIndeterminate = other.AllowIndeterminate;
+            AllowOtherOption = other.AllowOtherOption;
+            AllowVpn = other.AllowVpn;
+            CustomDesignColors = new PollCustomDesignColors(other.CustomDesignColors);
+            Deadline = other.Deadline;
+            DuplicationChecking = other.DuplicationChecking;
+            EditVotePermissions = other.EditVotePermissions;
+            ForceAppearance = other.ForceAppearance;
+            HideParticipants = other.HideParticipants;
+            IsMultipleChoice = other.IsMultipleChoice;
+            IsPrivate = other.IsPrivate;
+            MinChoices = other.MinChoices;
+            MaxChoices = other.MaxChoices;
+            Winners = other.Winners;
+            RandomizeOptions = other.RandomizeOptions;
+            RequireName = other.RequireName;
+            ResultVisibility = other.ResultVisibility;
+            UseCustomDesign = other.UseCustomDesign;
+        }
 
         protected bool Equals(PollConfig other)
         {
@@ -92,7 +119,7 @@ namespace StrawSharp.Models.PollModels
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((PollConfig) obj);
+            return Equals((PollConfig)obj);
         }
 
         public override int GetHashCode()

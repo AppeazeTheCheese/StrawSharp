@@ -37,6 +37,23 @@ namespace StrawSharp.Models.UserModels
         [JsonConverter(typeof(StringTimeZoneInfoConverter))]
         public TimeZoneInfo TimeZone { get; set; }
 
+        public UserConfig() { }
+
+        public UserConfig(UserConfig other)
+        {
+            if (other == null) return;
+            Appearance = other.Appearance;
+            ClockType = other.ClockType;
+            FirstDayOfWeek = other.FirstDayOfWeek;
+            Language = other.Language;
+            Locale = other.Locale;
+            NotificationDelay = other.NotificationDelay;
+            NotifyDeadline = other.NotifyDeadline;
+            NotifyMeetingVote = other.NotifyMeetingVote;
+            NotifyPollVote = other.NotifyPollVote;
+            TimeZone = other.TimeZone;
+        }
+
         protected bool Equals(UserConfig other)
         {
             return Appearance == other.Appearance && ClockType == other.ClockType &&

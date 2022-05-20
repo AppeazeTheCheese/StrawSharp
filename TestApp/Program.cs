@@ -30,6 +30,7 @@ namespace TestApp
                 .WithTitle("Test")
                 .WithDescription("StrawSharp Test")
                 .Private()
+                .WithDeadline(DateTime.Now + TimeSpan.FromMinutes(2))
                 .MultipleChoice()
                 .UseCustomDesign()
                 .WithTitleColor(Color.Red)
@@ -37,10 +38,14 @@ namespace TestApp
                 .WithTextOptions("Test 1", "Test 2", "Test 3")
                 .Build();
 
-            var createPollResponse = await client.CreatePollAsync(poll);
+            var createdPoll = await client.CreatePollAsync(poll);
+            createdPoll.Config.Deadline = null;
+
+            // Update Poll
+            var updatedPoll = await client.UpdatePollAsync(createdPoll);
 
             // Get Poll
-            var getPollResponse = await client.GetPollAsync(createPollResponse.Id);
+            var getPollResponse = await client.GetPollAsync(updatedPoll.Id);
 
             // Delete Poll
             await client.DeletePollAsync(getPollResponse.Id);

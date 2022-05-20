@@ -38,6 +38,23 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("timezone")]
         public string TimeZone { get; set; }
 
+        public PollMeta() { }
+
+        public PollMeta(PollMeta other)
+        {
+            if (other == null) return;
+            Description = other.Description;
+            Location = other.Location;
+            VoteCount = other.VoteCount;
+            ParticipantCount = other.ParticipantCount;
+            ViewCount = other.ViewCount;
+            CommentCount = other.CommentCount;
+            CreatorCountry = other.CreatorCountry;
+            PinCodeExpiration = other.PinCodeExpiration;
+            LastVoteAt = other.LastVoteAt;
+            TimeZone = other.TimeZone;
+        }
+
         protected bool Equals(PollMeta other)
         {
             return Description == other.Description && Location == other.Location && VoteCount == other.VoteCount &&
@@ -52,7 +69,7 @@ namespace StrawSharp.Models.PollModels
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((PollMeta) obj);
+            return Equals((PollMeta)obj);
         }
 
         public override int GetHashCode()

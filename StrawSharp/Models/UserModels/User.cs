@@ -33,6 +33,21 @@ namespace StrawSharp.Models.UserModels
         [JsonPropertyName("user_config")]
         public UserConfig Config { get; set; }
 
+        public User() { }
+
+        public User(User other)
+        {
+            if(other == null) return;
+            Id = other.Id;
+            Username = other.Username;
+            DisplayName = other.DisplayName;
+            AvatarPath = other.AvatarPath;
+            Subscription = other.Subscription;
+            Meta = new UserMeta(other.Meta);
+            CreatedAt = other.CreatedAt;
+            Config = new UserConfig(other.Config);
+        }
+
         protected bool Equals(User other)
         {
             return Id == other.Id && Username == other.Username && DisplayName == other.DisplayName &&

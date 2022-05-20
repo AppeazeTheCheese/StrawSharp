@@ -9,7 +9,7 @@ namespace StrawSharp.Models.PollModels
     public class PollMedia
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; } = null;
+        public string Id { get; set; }
 
         [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
@@ -38,6 +38,22 @@ namespace StrawSharp.Models.PollModels
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime UpdatedAt { get; set; }
 
+        public PollMedia() { }
+
+        public PollMedia(PollMedia other)
+        {
+            if (other == null) return;
+            Id = other.Id;
+            Type = other.Type;
+            User = new User(other.User);
+            Source = other.Source;
+            Url = other.Url;
+            Width = other.Width;
+            Height = other.Height;
+            CreatedAt = other.CreatedAt;
+            UpdatedAt = other.UpdatedAt;
+        }
+
         protected bool Equals(PollMedia other)
         {
             return Id == other.Id && Type == other.Type && Equals(User, other.User) && Source == other.Source && Url == other.Url && Width == other.Width && Height == other.Height && CreatedAt.Equals(other.CreatedAt) && UpdatedAt.Equals(other.UpdatedAt);
@@ -48,7 +64,7 @@ namespace StrawSharp.Models.PollModels
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((PollMedia) obj);
+            return Equals((PollMedia)obj);
         }
 
         public override int GetHashCode()
@@ -56,7 +72,7 @@ namespace StrawSharp.Models.PollModels
             unchecked
             {
                 var hashCode = (Id != null ? Id.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (int) Type;
+                hashCode = (hashCode * 397) ^ (int)Type;
                 hashCode = (hashCode * 397) ^ (User != null ? User.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Source != null ? Source.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Url != null ? Url.GetHashCode() : 0);

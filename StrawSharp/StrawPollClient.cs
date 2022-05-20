@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using StrawSharp.Models.PollModels;
 using StrawSharp.Models.ResponseModels;
@@ -31,8 +32,6 @@ namespace StrawSharp
             _apiKey = apiKey;
         }
 
-        #region Polls
-
         public async Task<PollListResponse> GetMyPollsAsync(int limit = 10, int page = 1)
         {
             var endpoint = $"{ApiConstants.Endpoints.MyPolls}?page={page}&limit={limit}";
@@ -44,7 +43,7 @@ namespace StrawSharp
 
         public async Task<Poll> GetPollAsync(string pollId)
         {
-            var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
+            var endpoint = $"{ApiConstants.Endpoints.Polls}/{pollId}";
             var method = HttpMethod.Get;
 
             var response = await SendRestRequestAsync<Poll>(endpoint, method);
@@ -62,7 +61,7 @@ namespace StrawSharp
 
         public async Task<Poll> UpdatePollAsync(string pollId, Poll poll)
         {
-            var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
+            var endpoint = $"{ApiConstants.Endpoints.Polls}/{pollId}";
             var method = HttpMethod.Put;
 
             var response = await SendRestRequestAsync<Poll>(endpoint, method, poll);
@@ -80,15 +79,11 @@ namespace StrawSharp
 
         public async Task DeletePollAsync(string pollId)
         {
-            var endpoint = Path.Combine(ApiConstants.Endpoints.Polls, pollId);
+            var endpoint = $"{ApiConstants.Endpoints.Polls}/{pollId}";
             var method = HttpMethod.Delete;
 
             await SendRestRequestAsync(endpoint, method);
         }
-
-        #endregion
-
-        #region Media
 
         public async Task<PollMedia> UploadMediaAsync(string fileName, Stream fileStream)
         {
@@ -115,10 +110,6 @@ namespace StrawSharp
         {
             return await UploadMediaAsync(fileName, new MemoryStream(content));
         }
-
-        #endregion
-
-        #region Request Handling
 
         private async Task SendRestRequestAsync(string endpoint, HttpMethod method, object data = null)
         {
@@ -185,13 +176,11 @@ namespace StrawSharp
             var responseText = await message.Content.ReadAsStringAsync();
             if (!message.IsSuccessStatusCode)
             {
-                var response = JsonSerializer.Deserialize<ErrorResponse>(responseText);
+                var response = JsonNode.Parse(responseText)["error"].Deserialize<ErrorResponse>();
                 throw new StrawPollException(message.StatusCode, response);
             }
 
             return JsonSerializer.Deserialize<T>(responseText);
         }
-
-        #endregion
     }
 }

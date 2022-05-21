@@ -36,7 +36,8 @@ namespace StrawSharp.Models.PollModels
         public DateTime? LastVoteAt { get; set; }
 
         [JsonPropertyName("timezone")]
-        public string TimeZone { get; set; }
+        [JsonConverter(typeof(StringTimeZoneInfoConverter))]
+        public TimeZoneInfo TimeZone { get; set; }
 
         public PollMeta() { }
 

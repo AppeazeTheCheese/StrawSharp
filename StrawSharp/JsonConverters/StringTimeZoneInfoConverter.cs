@@ -24,7 +24,18 @@ namespace StrawSharp.JsonConverters
 
         public override void Write(Utf8JsonWriter writer, TimeZoneInfo value, JsonSerializerOptions options)
         {
-            throw new NotImplementedException();
+            if (value == null)
+            {
+                writer.WriteNullValue();
+                return;
+            }
+
+            var convertedZone = value.Id;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                convertedZone = TZConvert.WindowsToIana(value.Id);
+
+            writer.WriteStringValue(convertedZone);
         }
     }
 }

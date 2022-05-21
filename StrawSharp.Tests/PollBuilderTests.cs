@@ -15,8 +15,6 @@ namespace StrawSharp.Tests
             _pollBuilder = new PollBuilder();
         }
 
-        #region WithTitle
-
         [TestMethod]
         public void WithTitle_Null_ArgumentException()
         {
@@ -30,12 +28,6 @@ namespace StrawSharp.Tests
             _pollBuilder.WithTitle(title);
             Assert.AreEqual(title, _pollBuilder.Title);
         }
-
-        #endregion
-
-        #region Media
-
-        #region WithMediaId
 
         [TestMethod]
         public void WithMediaId_Null_SetProperty()
@@ -52,10 +44,6 @@ namespace StrawSharp.Tests
             Assert.AreEqual(mediaId, _pollBuilder.Media.Id);
         }
 
-        #endregion
-
-        #region WithMedia
-
         [TestMethod]
         public void WithMedia_Null_SetPropertyToNewInstance()
         {
@@ -71,13 +59,6 @@ namespace StrawSharp.Tests
             Assert.AreSame(media, _pollBuilder.Media);
         }
 
-        #endregion
-
-        #endregion
-
-        #region Config
-
-        #region WithPollConfig
 
         [TestMethod]
         public void WithPollConfig_Null_SetPropertyToNewInstance()
@@ -99,14 +80,6 @@ namespace StrawSharp.Tests
             Assert.AreSame(config, _pollBuilder.Config);
         }
 
-        #endregion
-
-        #endregion
-
-        #region Meta
-
-        #region WithDescription
-
         [TestMethod]
         public void WithDescription_Null_SetProperty()
         {
@@ -122,14 +95,6 @@ namespace StrawSharp.Tests
             Assert.AreEqual(description, _pollBuilder.Meta.Description);
         }
 
-        #endregion
-
-        #endregion
-
-        #region WithMeta
-
-        
-
-        #endregion
+        //TODO: WithMeta
     }
 }

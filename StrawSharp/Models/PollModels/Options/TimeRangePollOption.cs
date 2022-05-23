@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
-using StrawSharp.Models.Enums;
+using StrawSharp.Models.EnumValues;
 
 namespace StrawSharp.Models.PollModels.Options
 {
     public class TimeRangePollOption : PollOption
     {
         [JsonPropertyName("type")]
-        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public override OptionType Type => OptionType.TimeRange;
+        public override string Type => OptionType.TimeRange;
 
         [JsonPropertyName("start_time")]
         [JsonConverter(typeof(UnixDateTimeConverter))]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
-using StrawSharp.Models.Enums;
+using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.PollModels.Options;
 using StrawSharp.Models.UserModels;
 
@@ -33,9 +33,11 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("poll_meta")]
         public PollMeta Meta { get; set; } = new PollMeta();
 
+        /// <summary>
+        /// The type of poll. Known values in <see cref="EnumValues.PollType"/>.
+        /// </summary>
         [JsonPropertyName("type")]
-        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public PollType Type { get; set; }
+        public string Type { get; set; } = PollType.MultipleChoice;
 
         [JsonPropertyName("version")]
         public string Version { get; set; }
@@ -63,9 +65,11 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("results_path")]
         public string ResultsPath { get; set; }
 
+        /// <summary>
+        /// The status of the poll. Known values in <see cref="EnumValues.PollStatus"/>.
+        /// </summary>
         [JsonPropertyName("status")]
-        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public PollStatus Status { get; set; } = PollStatus.Published;
+        public string Status { get; set; } = PollStatus.Published;
 
         [JsonPropertyName("url")]
         public string Url { get; set; }
@@ -110,7 +114,7 @@ namespace StrawSharp.Models.PollModels
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Poll)obj);
+            return Equals((Poll) obj);
         }
 
         public override int GetHashCode()
@@ -124,7 +128,7 @@ namespace StrawSharp.Models.PollModels
                 hashCode = (hashCode * 397) ^ (Options != null ? Options.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Config != null ? Config.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Meta != null ? Meta.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (int)Type;
+                hashCode = (hashCode * 397) ^ (Type != null ? Type.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Version != null ? Version.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ CreatedAt.GetHashCode();
                 hashCode = (hashCode * 397) ^ UpdatedAt.GetHashCode();
@@ -133,7 +137,7 @@ namespace StrawSharp.Models.PollModels
                 hashCode = (hashCode * 397) ^ (Slug != null ? Slug.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ PinCode.GetHashCode();
                 hashCode = (hashCode * 397) ^ (ResultsPath != null ? ResultsPath.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (int)Status;
+                hashCode = (hashCode * 397) ^ (Status != null ? Status.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Url != null ? Url.GetHashCode() : 0);
                 return hashCode;
             }

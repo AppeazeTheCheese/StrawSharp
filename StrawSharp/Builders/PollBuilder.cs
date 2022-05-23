@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using StrawSharp.Models.Enums;
+using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.PollModels;
 using StrawSharp.Models.PollModels.Options;
 
@@ -214,13 +214,23 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        public PollBuilder WithDuplicationChecking(DuplicationCheck checkType)
+        /// <summary>
+        /// Set the type of duplication checking to be used by the poll.
+        /// </summary>
+        /// <param name="checkType">Known values in <see cref="DuplicationCheck"/>.</param>
+        /// <returns></returns>
+        public PollBuilder WithDuplicationChecking(string checkType)
         {
             Config.DuplicationChecking = checkType;
             return this;
         }
 
-        public PollBuilder WithEditVotePermissions(EditVotePermission permission)
+        /// <summary>
+        /// Set who has access to edit votes.
+        /// </summary>
+        /// <param name="permission">Known values in <see cref="EditVotePermission"/></param>
+        /// <returns></returns>
+        public PollBuilder WithEditVotePermissions(string permission)
         {
             Config.EditVotePermissions = permission;
             return this;
@@ -262,7 +272,12 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        public PollBuilder WithResultVisibility(ResultVisibility visibility)
+        /// <summary>
+        /// Sets when the results become visible.
+        /// </summary>
+        /// <param name="visibility">Known values in <see cref="ResultVisibility"/></param>
+        /// <returns></returns>
+        public PollBuilder WithResultVisibility(string visibility)
         {
             Config.ResultVisibility = visibility;
             return this;

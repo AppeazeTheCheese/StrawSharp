@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
-using StrawSharp.Models.Enums;
+using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.UserModels;
 
 namespace StrawSharp.Models.PollModels
@@ -11,9 +11,11 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
+        /// <summary>
+        /// The type of media. Known values in <see cref="EnumValues.MediaType"/>
+        /// </summary>
         [JsonPropertyName("type")]
-        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public MediaType Type { get; set; }
+        public string Type { get; set; }
 
         [JsonPropertyName("user")]
         public User User { get; set; }
@@ -56,7 +58,9 @@ namespace StrawSharp.Models.PollModels
 
         protected bool Equals(PollMedia other)
         {
-            return Id == other.Id && Type == other.Type && Equals(User, other.User) && Source == other.Source && Url == other.Url && Width == other.Width && Height == other.Height && CreatedAt.Equals(other.CreatedAt) && UpdatedAt.Equals(other.UpdatedAt);
+            return Id == other.Id && Type == other.Type && Equals(User, other.User) && Source == other.Source &&
+                   Url == other.Url && Width == other.Width && Height == other.Height &&
+                   CreatedAt.Equals(other.CreatedAt) && UpdatedAt.Equals(other.UpdatedAt);
         }
 
         public override bool Equals(object obj)
@@ -64,7 +68,7 @@ namespace StrawSharp.Models.PollModels
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((PollMedia)obj);
+            return Equals((PollMedia) obj);
         }
 
         public override int GetHashCode()
@@ -72,7 +76,7 @@ namespace StrawSharp.Models.PollModels
             unchecked
             {
                 var hashCode = (Id != null ? Id.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (int)Type;
+                hashCode = (hashCode * 397) ^ (Type != null ? Type.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (User != null ? User.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Source != null ? Source.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Url != null ? Url.GetHashCode() : 0);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using StrawSharp.Models.Enums;
+using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.PollModels.Options;
 
 namespace StrawSharp.JsonConverters

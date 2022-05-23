@@ -1,13 +1,12 @@
 ﻿using System.Text.Json.Serialization;
-using StrawSharp.Models.Enums;
+using StrawSharp.Models.EnumValues;
 
 namespace StrawSharp.Models.PollModels.Options
 {
     public class ImagePollOption : PollOption
     {
         [JsonPropertyName("type")]
-        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public override OptionType Type => OptionType.Image;
+        public override string Type => OptionType.Image;
 
         [JsonPropertyName("media")]
         public PollMedia Media { get; set; }

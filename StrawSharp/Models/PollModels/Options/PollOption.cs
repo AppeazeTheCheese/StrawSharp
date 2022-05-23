@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using StrawSharp.Models.Enums;
+using StrawSharp.Models.EnumValues;
 
 namespace StrawSharp.Models.PollModels.Options
 {
@@ -8,24 +8,26 @@ namespace StrawSharp.Models.PollModels.Options
         [JsonPropertyName("id")]
         public string Id { get; set; } = null;
 
+        /// <summary>
+        /// The type of poll option. Known values in <see cref="EnumValues.OptionType"/>.
+        /// </summary>
         [JsonPropertyName("type")]
-        [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public virtual OptionType Type { get; set; }
+        public virtual string Type { get; set; }
 
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
         [JsonPropertyName("is_write_in")]
-        public bool IsWriteIn { get; set; } = false;
+        public bool IsWriteIn { get; set; }
 
         [JsonPropertyName("max_votes")]
-        public int MaxVotes { get; set; } = 0;
+        public int MaxVotes { get; set; }
 
         [JsonPropertyName("position")]
-        public int Position { get; set; } = 0;
+        public int Position { get; set; }
 
         [JsonPropertyName("vote_count")]
-        public int VoteCount { get; set; } = 0;
+        public int VoteCount { get; set; }
 
         public PollOption() { }
 
@@ -52,7 +54,7 @@ namespace StrawSharp.Models.PollModels.Options
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((PollOption)obj);
+            return Equals((PollOption) obj);
         }
 
         public override int GetHashCode()
@@ -60,7 +62,7 @@ namespace StrawSharp.Models.PollModels.Options
             unchecked
             {
                 var hashCode = (Id != null ? Id.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (int)Type;
+                hashCode = (hashCode * 397) ^ (Type != null ? Type.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Description != null ? Description.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ IsWriteIn.GetHashCode();
                 hashCode = (hashCode * 397) ^ MaxVotes;

@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using StrawSharp;
 using StrawSharp.Builders;
+using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.PollModels;
 
 namespace TestApp
@@ -35,6 +36,7 @@ namespace TestApp
                 .UseCustomDesign()
                 .WithTitleColor(Color.Red)
                 .WithMedia(uploadMediaResponse)
+                .WithDuplicationChecking(DuplicationCheck.Invite)
                 .WithTextOptions("Test 1", "Test 2", "Test 3")
                 .Build();
 

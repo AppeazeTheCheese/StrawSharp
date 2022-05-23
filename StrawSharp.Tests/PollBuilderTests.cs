@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StrawSharp.Builders;
-using StrawSharp.Models.Enums;
+using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.PollModels;
 using StrawSharp.Models.PollModels.Options;
 

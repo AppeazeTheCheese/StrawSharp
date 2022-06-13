@@ -16,6 +16,11 @@ namespace StrawSharp.Models.PollModels.Options
 
         public DatePollOption() { }
 
+        public DatePollOption(DateTime date)
+        {
+            Date = date;
+        }
+
         public DatePollOption(DatePollOption other) : base(other)
         {
             if (other == null) return;

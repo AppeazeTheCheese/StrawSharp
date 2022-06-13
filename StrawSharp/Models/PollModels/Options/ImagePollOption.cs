@@ -16,6 +16,12 @@ namespace StrawSharp.Models.PollModels.Options
 
         public ImagePollOption() { }
 
+        public ImagePollOption(string pollMediaId, string altText)
+        {
+            Media = new PollMedia {Id = pollMediaId};
+            Value = altText;
+        }
+
         public ImagePollOption(ImagePollOption other) : base(other)
         {
             if (other == null) return;

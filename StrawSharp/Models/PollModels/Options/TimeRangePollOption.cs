@@ -20,6 +20,12 @@ namespace StrawSharp.Models.PollModels.Options
 
         public TimeRangePollOption() { }
 
+        public TimeRangePollOption(DateTime startTime, DateTime endTime)
+        {
+            StartTime = startTime;
+            EndTime = endTime;
+        }
+
         public TimeRangePollOption(TimeRangePollOption other) : base(other)
         {
             if (other == null) return;

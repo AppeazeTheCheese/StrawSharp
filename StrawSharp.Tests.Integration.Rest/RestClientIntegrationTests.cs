@@ -41,9 +41,9 @@ namespace StrawSharp.Tests.Integration
                 },
                 Options = new List<PollOption>
                 {
-                    new TextPollOption {Value = option1},
-                    new TextPollOption {Value = option2},
-                    new TextPollOption {Value = option3}
+                    new TextPollOption(option1),
+                    new TextPollOption(option2),
+                    new TextPollOption(option3)
                 }
             };
 

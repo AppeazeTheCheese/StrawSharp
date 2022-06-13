@@ -121,11 +121,11 @@ namespace StrawSharp.Tests
         {
             var pollOptions = new PollOption[]
             {
-                new TextPollOption{Value = "These"},
-                new TextPollOption{Value = "are"},
-                new TextPollOption{Value = "options"},
-                new DatePollOption{Date = DateTime.Now},
-                new TimeRangePollOption{StartTime = DateTime.Now - TimeSpan.FromMinutes(5), EndTime = DateTime.Now + TimeSpan.FromMinutes(5)},
+                new TextPollOption("These"),
+                new TextPollOption("are"),
+                new TextPollOption("options"),
+                new DatePollOption(DateTime.Now),
+                new TimeRangePollOption(DateTime.Now - TimeSpan.FromMinutes(5), DateTime.Now + TimeSpan.FromMinutes(5))
             };
 
             _pollBuilder.WithOptions(pollOptions);
@@ -140,16 +140,16 @@ namespace StrawSharp.Tests
         {
             var firstOptions = new PollOption[]
             {
-                new DatePollOption { Date = DateTime.Now + TimeSpan.FromHours(2) },
-                new TextPollOption { Value = "T1" },
-                new TimeRangePollOption { StartTime = DateTime.Now + TimeSpan.FromMinutes(1), EndTime = DateTime.Now + TimeSpan.FromHours(1) }
+                new DatePollOption(DateTime.Now + TimeSpan.FromHours(2)),
+                new TextPollOption("T1"),
+                new TimeRangePollOption(DateTime.Now + TimeSpan.FromMinutes(1), DateTime.Now + TimeSpan.FromHours(1))
             };
 
             var secondOptions = new PollOption[]
             {
-                new TextPollOption {Value = "T2"},
-                new TextPollOption {Value = "T3"},
-                new DatePollOption {Date = DateTime.Now + TimeSpan.FromMinutes(2)}
+                new TextPollOption("T2"),
+                new TextPollOption("T3"),
+                new DatePollOption(DateTime.Now + TimeSpan.FromMinutes(2))
             };
 
             _pollBuilder.WithOptions(firstOptions);
@@ -170,9 +170,9 @@ namespace StrawSharp.Tests
 
             var expectedOptions = new TextPollOption[]
             {
-                new TextPollOption {Value = text1},
-                new TextPollOption {Value = text2},
-                new TextPollOption {Value = text3}
+                new TextPollOption(text1),
+                new TextPollOption(text2),
+                new TextPollOption(text3)
             };
 
             _pollBuilder.WithTextOptions(text1, text2, text3);
@@ -194,11 +194,11 @@ namespace StrawSharp.Tests
             const string text5 = "Test5";
             const string text6 = "Text6";
 
-            var expectedOptions = new TextPollOption[]
+            var expectedOptions = new[]
             {
-                new TextPollOption {Value = text4},
-                new TextPollOption {Value = text5},
-                new TextPollOption {Value = text6}
+                new TextPollOption(text4),
+                new TextPollOption(text5),
+                new TextPollOption(text6)
             };
 
             _pollBuilder.WithTextOptions(text1, text2, text3);
@@ -219,9 +219,9 @@ namespace StrawSharp.Tests
 
             var expectedOptions = new DatePollOption[]
             {
-                new DatePollOption {Date = date1},
-                new DatePollOption {Date = date2},
-                new DatePollOption {Date = date3}
+                new DatePollOption(date1),
+                new DatePollOption(date2),
+                new DatePollOption(date3)
             };
 
             _pollBuilder.WithDateOptions(date1, date2, date3);
@@ -243,11 +243,11 @@ namespace StrawSharp.Tests
             var date5 = DateTime.Now + TimeSpan.FromHours(2);
             var date6 = DateTime.Now + TimeSpan.FromDays(2);
 
-            var expectedOptions = new DatePollOption[]
+            var expectedOptions = new[]
             {
-                new DatePollOption {Date = date4},
-                new DatePollOption {Date = date5},
-                new DatePollOption {Date = date6}
+                new DatePollOption(date4),
+                new DatePollOption(date5),
+                new DatePollOption(date6)
             };
 
             _pollBuilder.WithDateOptions(date1, date2, date3);
@@ -264,11 +264,11 @@ namespace StrawSharp.Tests
         {
             var pollOptions = new PollOption[]
             {
-                new TextPollOption{Value = "These"},
-                new TextPollOption{Value = "are"},
-                new TextPollOption{Value = "options"},
-                new DatePollOption{Date = DateTime.Now},
-                new TimeRangePollOption{StartTime = DateTime.Now - TimeSpan.FromMinutes(5), EndTime = DateTime.Now + TimeSpan.FromMinutes(5)},
+                new TextPollOption("These"),
+                new TextPollOption("are"),
+                new TextPollOption("options"),
+                new DatePollOption(DateTime.Now),
+                new TimeRangePollOption(DateTime.Now - TimeSpan.FromMinutes(5), DateTime.Now + TimeSpan.FromMinutes(5)),
             };
 
             _pollBuilder.AddOptions(pollOptions);
@@ -283,16 +283,16 @@ namespace StrawSharp.Tests
         {
             var firstOptions = new PollOption[]
             {
-                new DatePollOption { Date = DateTime.Now + TimeSpan.FromHours(2) },
-                new TextPollOption { Value = "T1" },
-                new TimeRangePollOption { StartTime = DateTime.Now + TimeSpan.FromMinutes(1), EndTime = DateTime.Now + TimeSpan.FromHours(1) }
+                new DatePollOption(DateTime.Now + TimeSpan.FromHours(2)),
+                new TextPollOption("T1"),
+                new TimeRangePollOption(DateTime.Now + TimeSpan.FromMinutes(1), DateTime.Now + TimeSpan.FromHours(1))
             };
 
             var secondOptions = new PollOption[]
             {
-                new TextPollOption {Value = "T2"},
-                new TextPollOption {Value = "T3"},
-                new DatePollOption {Date = DateTime.Now + TimeSpan.FromMinutes(2)}
+                new TextPollOption("T2"),
+                new TextPollOption("T3"),
+                new DatePollOption(DateTime.Now + TimeSpan.FromMinutes(2))
             };
 
             var allOptions = firstOptions.Concat(secondOptions).ToArray();
@@ -315,9 +315,9 @@ namespace StrawSharp.Tests
 
             var expectedOptions = new TextPollOption[]
             {
-                new TextPollOption {Value = text1},
-                new TextPollOption {Value = text2},
-                new TextPollOption {Value = text3}
+                new TextPollOption(text1),
+                new TextPollOption(text2),
+                new TextPollOption(text3)
             };
 
             _pollBuilder.AddTextOptions(text1, text2, text3);
@@ -341,12 +341,12 @@ namespace StrawSharp.Tests
 
             var expectedOptions = new TextPollOption[]
             {
-                new TextPollOption {Value = text1},
-                new TextPollOption {Value = text2},
-                new TextPollOption {Value = text3},
-                new TextPollOption {Value = text4},
-                new TextPollOption {Value = text5},
-                new TextPollOption {Value = text6}
+                new TextPollOption(text1),
+                new TextPollOption(text2),
+                new TextPollOption(text3),
+                new TextPollOption(text4),
+                new TextPollOption(text5),
+                new TextPollOption(text6)
             };
             
             _pollBuilder.AddTextOptions(text1, text2, text3);
@@ -367,9 +367,9 @@ namespace StrawSharp.Tests
 
             var expectedOptions = new DatePollOption[]
             {
-                new DatePollOption {Date = date1},
-                new DatePollOption {Date = date2},
-                new DatePollOption {Date = date3}
+                new DatePollOption(date1),
+                new DatePollOption(date2),
+                new DatePollOption(date3)
             };
 
             _pollBuilder.AddDateOptions(date1, date2, date3);
@@ -393,12 +393,12 @@ namespace StrawSharp.Tests
 
             var expectedOptions = new DatePollOption[]
             {
-                new DatePollOption {Date = date1},
-                new DatePollOption {Date = date2},
-                new DatePollOption {Date = date3},
-                new DatePollOption {Date = date4},
-                new DatePollOption {Date = date5},
-                new DatePollOption {Date = date6}
+                new DatePollOption(date1),
+                new DatePollOption(date2),
+                new DatePollOption(date3),
+                new DatePollOption(date4),
+                new DatePollOption(date5),
+                new DatePollOption(date6)
             };
 
             _pollBuilder.AddDateOptions(date1, date2, date3);
@@ -434,8 +434,8 @@ namespace StrawSharp.Tests
 
             var expectedOptions = new TimeRangePollOption[]
             {
-                new TimeRangePollOption {StartTime = start1, EndTime = end1},
-                new TimeRangePollOption {StartTime = start2, EndTime = end2}
+                new TimeRangePollOption(start1, end1),
+                new TimeRangePollOption(start2, end2)
             };
 
             _pollBuilder.AddTimeRangeOption(start1, end1);
@@ -453,19 +453,19 @@ namespace StrawSharp.Tests
         {
             var allOptions = new PollOption[]
             {
-                new TextPollOption {Value = "Test1"},
-                new TextPollOption {Value = "Test2"},
-                new TextPollOption {Value = "Test3"},
-                new TextPollOption {Value = "Test4"},
-                new TextPollOption {Value = "Test5"},
-                new TextPollOption {Value = "Test6"}
+                new TextPollOption("Test1"),
+                new TextPollOption("Test2"),
+                new TextPollOption("Test3"),
+                new TextPollOption("Test4"),
+                new TextPollOption("Test5"),
+                new TextPollOption("Test6")
             };
 
             var expectedOptions = new PollOption[]
             {
-                new TextPollOption {Value = "Test2"},
-                new TextPollOption {Value = "Test4"},
-                new TextPollOption {Value = "Test6"}
+                new TextPollOption("Test2"),
+                new TextPollOption("Test4"),
+                new TextPollOption("Test6")
             };
 
             var removeOptions = allOptions.Where((x, i) => i % 2 == 0); // Should get index 0, 2 and 4
@@ -483,9 +483,9 @@ namespace StrawSharp.Tests
         {
             var options = new PollOption[]
             {
-                new TextPollOption {Value = "Test"},
-                new DatePollOption {Date = DateTime.Now},
-                new TimeRangePollOption {StartTime = DateTime.Now, EndTime = DateTime.Now + TimeSpan.FromMinutes(2)}
+                new TextPollOption("Test"),
+                new DatePollOption(DateTime.Now),
+                new TimeRangePollOption(DateTime.Now, DateTime.Now + TimeSpan.FromMinutes(2))
             };
 
             _pollBuilder.Options = options.ToList();

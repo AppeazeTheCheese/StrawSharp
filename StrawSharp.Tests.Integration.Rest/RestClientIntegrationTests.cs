@@ -15,7 +15,7 @@ namespace StrawSharp.Tests.Integration
         private static Poll createdPoll;
 
         [Test, Order(50)]
-        public async Task CreateAnonymousPoll_PollObject_CreatedAnonymousPollWithSettings()
+        public async Task CreateMultipleChoicePoll_PollObject_CreatedAnonymousPollWithSettings()
         {
             const string title = "StrawSharp Test";
             const string pollType = PollType.MultipleChoice;
@@ -53,7 +53,7 @@ namespace StrawSharp.Tests.Integration
             Assert.NotNull(createdPoll.Url);
 
             Assert.AreEqual(title, createdPoll.Title);
-            //Assert.AreEqual(pollType, createdPoll.Type);
+            Assert.AreEqual(pollType, createdPoll.Type);
 
             Assert.NotNull(createdPoll.Config);
             Assert.AreEqual(isPrivate, createdPoll.Config.IsPrivate);
@@ -73,7 +73,7 @@ namespace StrawSharp.Tests.Integration
         }
 
         [Test, Order(100)]
-        public async Task GetAnonymousPoll_PollReturned()
+        public async Task GetMultipleChoicePoll_PollReturned()
         {
             var poll = await Client.GetPollAsync(createdPoll.Id);
             
@@ -82,7 +82,7 @@ namespace StrawSharp.Tests.Integration
         }
 
         [Test, Order(150)]
-        public async Task UpdateAnonymousPoll_PollObject_UpdatedAnonymousPollWithSettings()
+        public async Task UpdateMultipleChoicePoll_PollObject_UpdatedAnonymousPollWithSettings()
         {
             const string duplicationCheck = DuplicationCheck.Ip;
             const string description = "Cool Description";
@@ -97,7 +97,7 @@ namespace StrawSharp.Tests.Integration
         }
 
         [Test, Order(200)]
-        public void DeleteAnonymousPoll_SuccessResponse()
+        public void DeleteMultipleChoicePoll_SuccessResponse()
         {
             Assert.DoesNotThrowAsync(() => Client.DeletePollAsync(createdPoll.Id));
         }

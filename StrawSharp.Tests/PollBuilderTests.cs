@@ -8,10 +8,13 @@ using StrawSharp.Models.PollModels.Options;
 
 namespace StrawSharp.Tests
 {
+    [TestFixture]
     public class PollBuilderTests
     {
-        private readonly PollBuilder _pollBuilder;
-        public PollBuilderTests()
+        private PollBuilder _pollBuilder;
+
+        [SetUp]
+        public void ResetPollBuilder()
         {
             _pollBuilder = new PollBuilder();
         }

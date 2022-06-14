@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using StrawSharp.Builders;
 using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.PollModels;
@@ -8,7 +8,6 @@ using StrawSharp.Models.PollModels.Options;
 
 namespace StrawSharp.Tests
 {
-    [TestClass]
     public class PollBuilderTests
     {
         private readonly PollBuilder _pollBuilder;
@@ -17,13 +16,13 @@ namespace StrawSharp.Tests
             _pollBuilder = new PollBuilder();
         }
 
-        [TestMethod]
+        [Test]
         public void WithTitle_Null_ArgumentException()
         {
-            Assert.ThrowsException<ArgumentException>(() => _pollBuilder.WithTitle(null));
+            Assert.Throws<ArgumentException>(() => _pollBuilder.WithTitle(null));
         }
 
-        [TestMethod]
+        [Test]
         public void WithTitle_String_PropertySet()
         {
             const string title = "Foo Bar";
@@ -31,14 +30,14 @@ namespace StrawSharp.Tests
             Assert.AreEqual(title, _pollBuilder.Title);
         }
 
-        [TestMethod]
+        [Test]
         public void WithMediaId_Null_SetProperty()
         {
             _pollBuilder.WithMediaId(null);
             Assert.IsNull(_pollBuilder.Media.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void WithMediaId_String_SetProperty()
         {
             const string mediaId = "FooBar";
@@ -46,14 +45,14 @@ namespace StrawSharp.Tests
             Assert.AreEqual(mediaId, _pollBuilder.Media.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void WithMedia_Null_SetPropertyToNewInstance()
         {
             _pollBuilder.WithMedia(null);
             Assert.AreEqual(new PollMedia(), _pollBuilder.Media);
         }
 
-        [TestMethod]
+        [Test]
         public void WithMedia_Instance_SetProperty()
         {
             var media = new PollMedia { Id = "Foo" };
@@ -62,14 +61,14 @@ namespace StrawSharp.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void WithPollConfig_Null_SetPropertyToNewInstance()
         {
             _pollBuilder.WithConfig(null);
             Assert.AreEqual(new PollConfig(), _pollBuilder.Config);
         }
 
-        [TestMethod]
+        [Test]
         public void WithPollConfig_Instance_SetProperty()
         {
             var config = new PollConfig()
@@ -82,14 +81,14 @@ namespace StrawSharp.Tests
             Assert.AreSame(config, _pollBuilder.Config);
         }
 
-        [TestMethod]
+        [Test]
         public void WithDescription_Null_SetProperty()
         {
             _pollBuilder.WithDescription(null);
             Assert.IsNull(_pollBuilder.Meta.Description);
         }
 
-        [TestMethod]
+        [Test]
         public void WithDescription_String_SetProperty()
         {
             const string description = "This is an awesome poll description!";
@@ -97,14 +96,14 @@ namespace StrawSharp.Tests
             Assert.AreEqual(description, _pollBuilder.Meta.Description);
         }
 
-        [TestMethod]
+        [Test]
         public void WithMeta_Null_SetPropertyToNewInstance()
         {
             _pollBuilder.WithMeta(null);
             Assert.AreEqual(new PollMeta(), _pollBuilder.Meta);
         }
 
-        [TestMethod]
+        [Test]
         public void WithMeta_Instance_SetProperty()
         {
             var meta = new PollMeta
@@ -116,7 +115,7 @@ namespace StrawSharp.Tests
             Assert.AreSame(meta, _pollBuilder.Meta);
         }
 
-        [TestMethod]
+        [Test]
         public void WithOptions_EnumerablePollOption_SetOptions()
         {
             var pollOptions = new PollOption[]
@@ -135,7 +134,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WithOptions_EnumerablePollOption_SetOptionsTwice()
         {
             var firstOptions = new PollOption[]
@@ -161,7 +160,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WithTextOptions_EnumerableString_SetOptions()
         {
             const string text1 = "Test1";
@@ -183,7 +182,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WithTextOptions_EnumerableString_SetOptionsTwice()
         {
             const string text1 = "Test1";
@@ -210,7 +209,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WithDateOptions_EnumerableDateTime_SetOptions()
         {
             var date1 = DateTime.Now + TimeSpan.FromMinutes(2);
@@ -232,7 +231,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WithDateOptions_EnumerableDateTime_SetOptionsTwice()
         {
             var date1 = DateTime.Now + TimeSpan.FromMinutes(2);
@@ -259,7 +258,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AddOptions_EnumerablePollOption_AddOptions()
         {
             var pollOptions = new PollOption[]
@@ -278,7 +277,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AddOptions_EnumerablePollOption_AddOptionsTwice()
         {
             var firstOptions = new PollOption[]
@@ -306,7 +305,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AddTextOptions_EnumerableString_AddOptions()
         {
             const string text1 = "Test1";
@@ -328,7 +327,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AddTextOptions_EnumerableString_AddOptionsTwice()
         {
             const string text1 = "Test1";
@@ -358,7 +357,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AddDateOptions_EnumerableDateTime_AddOptions()
         {
             var date1 = DateTime.Now + TimeSpan.FromMinutes(2);
@@ -380,7 +379,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AddDateOptions_EnumerableDateTime_AddOptionsTwice()
         {
             var date1 = DateTime.Now + TimeSpan.FromMinutes(2);
@@ -410,7 +409,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AddTimeRangeOption_DateTime_AddOption()
         {
             var start = DateTime.Now + TimeSpan.FromMinutes(2);
@@ -423,7 +422,7 @@ namespace StrawSharp.Tests
             Assert.AreEqual(expectedOption, _pollBuilder.Options[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void AddTimeRangeOption_DateTime_AddOptionTwice()
         {
             var start1 = DateTime.Now + TimeSpan.FromMinutes(1);
@@ -448,7 +447,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveOptions_EnumerablePollOption_RemoveOptions()
         {
             var allOptions = new PollOption[]
@@ -478,7 +477,7 @@ namespace StrawSharp.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ClearOptions_EnumerablePollOption_RemoveAllOptions()
         {
             var options = new PollOption[]

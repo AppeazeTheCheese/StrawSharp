@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrawSharp.Tests", "StrawSharp.Tests\StrawSharp.Tests.csproj", "{E00A4AB0-09DF-481F-9619-36362C3FC7D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrawSharp.Tests.Integration", "StrawSharp.Tests.Integration.Rest\StrawSharp.Tests.Integration.csproj", "{56F0A0BA-AF27-4C75-A517-F80812F9A193}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{54931CFE-FF35-46A7-821C-E0CD8C0C4FBC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrawSharp.Tests.Integration", "StrawSharp.Tests.Integration\StrawSharp.Tests.Integration.csproj", "{E7856593-5214-48C8-8E2C-C5B01F844E58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,17 +31,17 @@ Global
 		{E00A4AB0-09DF-481F-9619-36362C3FC7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E00A4AB0-09DF-481F-9619-36362C3FC7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E00A4AB0-09DF-481F-9619-36362C3FC7D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{56F0A0BA-AF27-4C75-A517-F80812F9A193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56F0A0BA-AF27-4C75-A517-F80812F9A193}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56F0A0BA-AF27-4C75-A517-F80812F9A193}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56F0A0BA-AF27-4C75-A517-F80812F9A193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7856593-5214-48C8-8E2C-C5B01F844E58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7856593-5214-48C8-8E2C-C5B01F844E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7856593-5214-48C8-8E2C-C5B01F844E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7856593-5214-48C8-8E2C-C5B01F844E58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E00A4AB0-09DF-481F-9619-36362C3FC7D9} = {54931CFE-FF35-46A7-821C-E0CD8C0C4FBC}
-		{56F0A0BA-AF27-4C75-A517-F80812F9A193} = {54931CFE-FF35-46A7-821C-E0CD8C0C4FBC}
+		{E7856593-5214-48C8-8E2C-C5B01F844E58} = {54931CFE-FF35-46A7-821C-E0CD8C0C4FBC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4B879C5-A4B3-457E-B309-98E440BA8433}

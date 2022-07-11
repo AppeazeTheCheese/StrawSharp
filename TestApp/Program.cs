@@ -35,7 +35,7 @@ namespace TestApp
                 .MultipleChoice()
                 .UseCustomDesign()
                 .WithTitleColor(Color.Red)
-                .WithMedia(uploadMediaResponse)
+                .WithMediaId(uploadMediaResponse.Id)
                 .WithDuplicationChecking(DuplicationCheck.Invite)
                 .WithTextOptions("Test 1", "Test 2", "Test 3")
                 .Build();

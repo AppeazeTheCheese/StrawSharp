@@ -49,22 +49,6 @@ namespace StrawSharp.Tests
         }
 
         [Test]
-        public void WithMedia_Null_SetPropertyToNewInstance()
-        {
-            _pollBuilder.WithMedia(null);
-            Assert.AreEqual(new PollMedia(), _pollBuilder.Media);
-        }
-
-        [Test]
-        public void WithMedia_Instance_SetProperty()
-        {
-            var media = new PollMedia { Id = "Foo" };
-            _pollBuilder.WithMedia(media);
-            Assert.AreSame(media, _pollBuilder.Media);
-        }
-
-
-        [Test]
         public void WithPollConfig_Null_SetPropertyToNewInstance()
         {
             _pollBuilder.WithConfig(null);

@@ -82,12 +82,6 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        public PollBuilder WithMedia(PollMedia media)
-        {
-            Media = media;
-            return this;
-        }
-
         public PollBuilder AllowComments(bool allow = true)
         {
             Config.AllowComments = allow;

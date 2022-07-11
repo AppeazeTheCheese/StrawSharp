@@ -18,7 +18,7 @@ namespace StrawSharp.Models.PollModels
         public string Title { get; set; }
 
         [JsonPropertyName("user")]
-        public User User { get; set; } = null;
+        public User User { get; set; }
 
         [JsonPropertyName("media")]
         public PollMedia Media { get; set; } = new PollMedia();

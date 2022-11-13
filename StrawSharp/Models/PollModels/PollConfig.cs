@@ -7,39 +7,34 @@ namespace StrawSharp.Models.PollModels
 {
     public class PollConfig
     {
-        /// <summary>
-        /// The style of voting on this poll. Known values in <see cref="EnumValues.VoteType"/>
-        /// </summary>
-        [JsonPropertyName("vote_type")]
-        public string VoteType { get; set; } = EnumValues.VoteType.Default;
 
         [JsonPropertyName("allow_comments")]
-        public bool AllowComments { get; set; } = false;
+        public bool AllowComments { get; set; }
 
         [JsonPropertyName("allow_indeterminate")]
-        public bool AllowIndeterminate { get; set; } = false;
+        public bool AllowIndeterminate { get; set; }
 
         [JsonPropertyName("allow_other_option")]
-        public bool AllowOtherOption { get; set; } = false;
+        public bool AllowOtherOption { get; set; }
 
         [JsonPropertyName("allow_vpn_users")]
-        public bool AllowVpn { get; set; } = false;
+        public bool AllowVpn { get; set; }
 
         [JsonPropertyName("custom_design_colors")]
         public PollCustomDesignColors CustomDesignColors { get; set; } = new PollCustomDesignColors();
 
         [JsonPropertyName("deadline_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime? Deadline { get; set; } = null;
+        public DateTime? Deadline { get; set; }
 
         /// <summary>
-        /// The type of duplication checking for this poll. Known values in <see cref="EnumValues.DuplicationCheck"/>.
+        /// The type of duplication checking for this poll. Known values in <see cref="DuplicationCheck"/>.
         /// </summary>
         [JsonPropertyName("duplication_checking")]
         public string DuplicationChecking { get; set; } = DuplicationCheck.None;
 
         /// <summary>
-        /// Who has access to edit votes for this poll. <see cref="EnumValues.EditVotePermission"/>
+        /// Who has access to edit votes for this poll. <see cref="EditVotePermission"/>
         /// </summary>
         [JsonPropertyName("edit_vote_permissions")]
         public string EditVotePermissions { get; set; } = EditVotePermission.Nobody;
@@ -51,28 +46,28 @@ namespace StrawSharp.Models.PollModels
         public string ForceAppearance { get; set; } = EnumValues.ForceAppearance.Auto;
 
         [JsonPropertyName("hide_participants")]
-        public bool HideParticipants { get; set; } = false;
+        public bool HideParticipants { get; set; }
 
         [JsonPropertyName("is_multiple_choice")]
-        public bool IsMultipleChoice { get; set; } = false;
+        public bool IsMultipleChoice { get; set; }
 
         [JsonPropertyName("is_private")]
-        public bool IsPrivate { get; set; } = false;
+        public bool IsPrivate { get; set; }
 
         [JsonPropertyName("multiple_choice_min")]
-        public int? MinChoices { get; set; } = null;
+        public int? MinChoices { get; set; }
 
         [JsonPropertyName("multiple_choice_max")]
-        public int? MaxChoices { get; set; } = null;
+        public int? MaxChoices { get; set; }
 
         [JsonPropertyName("number_of_winners")]
         public int? Winners { get; set; }
 
         [JsonPropertyName("randomize_options")]
-        public bool RandomizeOptions { get; set; } = false;
+        public bool RandomizeOptions { get; set; }
 
         [JsonPropertyName("require_voter_names")]
-        public bool RequireName { get; set; } = false;
+        public bool RequireName { get; set; }
 
         /// <summary>
         /// When the results will become visible. Known values in <see cref="EnumValues.ResultVisibility"/>.
@@ -81,14 +76,13 @@ namespace StrawSharp.Models.PollModels
         public string ResultVisibility { get; set; } = EnumValues.ResultVisibility.Always;
 
         [JsonPropertyName("use_custom_design")]
-        public bool UseCustomDesign { get; set; } = false;
+        public bool UseCustomDesign { get; set; }
 
         public PollConfig() { }
 
         public PollConfig(PollConfig other)
         {
             if (other == null) return;
-            VoteType = other.VoteType;
             AllowComments = other.AllowComments;
             AllowIndeterminate = other.AllowIndeterminate;
             AllowOtherOption = other.AllowOtherOption;
@@ -112,10 +106,10 @@ namespace StrawSharp.Models.PollModels
 
         protected bool Equals(PollConfig other)
         {
-            return VoteType == other.VoteType && AllowComments == other.AllowComments &&
-                   AllowIndeterminate == other.AllowIndeterminate && AllowOtherOption == other.AllowOtherOption &&
-                   AllowVpn == other.AllowVpn && Equals(CustomDesignColors, other.CustomDesignColors) &&
-                   Nullable.Equals(Deadline, other.Deadline) && DuplicationChecking == other.DuplicationChecking &&
+            return AllowComments == other.AllowComments && AllowIndeterminate == other.AllowIndeterminate &&
+                   AllowOtherOption == other.AllowOtherOption && AllowVpn == other.AllowVpn &&
+                   Equals(CustomDesignColors, other.CustomDesignColors) && Nullable.Equals(Deadline, other.Deadline) &&
+                   DuplicationChecking == other.DuplicationChecking &&
                    EditVotePermissions == other.EditVotePermissions && ForceAppearance == other.ForceAppearance &&
                    HideParticipants == other.HideParticipants && IsMultipleChoice == other.IsMultipleChoice &&
                    IsPrivate == other.IsPrivate && MinChoices == other.MinChoices && MaxChoices == other.MaxChoices &&
@@ -136,8 +130,7 @@ namespace StrawSharp.Models.PollModels
         {
             unchecked
             {
-                var hashCode = (VoteType != null ? VoteType.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ AllowComments.GetHashCode();
+                var hashCode = AllowComments.GetHashCode();
                 hashCode = (hashCode * 397) ^ AllowIndeterminate.GetHashCode();
                 hashCode = (hashCode * 397) ^ AllowOtherOption.GetHashCode();
                 hashCode = (hashCode * 397) ^ AllowVpn.GetHashCode();

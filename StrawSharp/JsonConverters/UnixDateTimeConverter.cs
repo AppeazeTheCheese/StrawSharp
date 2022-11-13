@@ -13,7 +13,11 @@ namespace StrawSharp.JsonConverters
 
         public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
         {
-            writer.WriteNumberValue(new DateTimeOffset(value).ToUnixTimeSeconds());
+            var unixTimeSeconds = 
+                value == DateTime.MinValue 
+                ? 0 
+                : new DateTimeOffset(value).ToUnixTimeSeconds();
+            writer.WriteNumberValue(unixTimeSeconds);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace StrawSharp.JsonConverters
 
         public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(value.ToString("d"));
+            writer.WriteStringValue(value.ToString("yyyy-MM-dd"));
         }
     }
 }

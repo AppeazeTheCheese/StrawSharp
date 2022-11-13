@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
-using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.UserModels;
 
 namespace StrawSharp.Models.PollModels

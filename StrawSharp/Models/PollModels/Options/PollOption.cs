@@ -6,7 +6,7 @@ namespace StrawSharp.Models.PollModels.Options
     public class PollOption
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; } = null;
+        public string Id { get; set; }
 
         /// <summary>
         /// The type of poll option. Known values in <see cref="EnumValues.OptionType"/>.

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
+using StrawSharp.Models.EnumValues;
 
 namespace StrawSharp.Models.UserModels
 {
@@ -19,11 +20,10 @@ namespace StrawSharp.Models.UserModels
         public string AvatarPath { get; set; }
 
         /// <summary>
-        /// The type of subscription this user has. Known values in <see cref="EnumValues.UserSubscription"/>.
+        /// The type of membership this user has. Known values in <see cref="UserMembership"/>.
         /// </summary>
-        [JsonPropertyName("subscription")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public string Subscription { get; set; }
+        [JsonPropertyName("membership")]
+        public string Membership { get; set; }
 
         [JsonPropertyName("user_meta")]
         public UserMeta Meta { get; set; }
@@ -44,7 +44,7 @@ namespace StrawSharp.Models.UserModels
             Username = other.Username;
             DisplayName = other.DisplayName;
             AvatarPath = other.AvatarPath;
-            Subscription = other.Subscription;
+            Membership = other.Membership;
             Meta = new UserMeta(other.Meta);
             CreatedAt = other.CreatedAt;
             Config = new UserConfig(other.Config);
@@ -53,7 +53,7 @@ namespace StrawSharp.Models.UserModels
         protected bool Equals(User other)
         {
             return Id == other.Id && Username == other.Username && DisplayName == other.DisplayName &&
-                   AvatarPath == other.AvatarPath && Subscription == other.Subscription && Equals(Meta, other.Meta) &&
+                   AvatarPath == other.AvatarPath && Membership == other.Membership && Equals(Meta, other.Meta) &&
                    CreatedAt.Equals(other.CreatedAt) && Equals(Config, other.Config);
         }
 
@@ -73,7 +73,7 @@ namespace StrawSharp.Models.UserModels
                 hashCode = (hashCode * 397) ^ (Username != null ? Username.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (DisplayName != null ? DisplayName.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (AvatarPath != null ? AvatarPath.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (Subscription != null ? Subscription.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Membership != null ? Membership.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Meta != null ? Meta.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ CreatedAt.GetHashCode();
                 hashCode = (hashCode * 397) ^ (Config != null ? Config.GetHashCode() : 0);

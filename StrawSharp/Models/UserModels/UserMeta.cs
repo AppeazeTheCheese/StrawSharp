@@ -1,25 +1,67 @@
 ﻿using System.Text.Json.Serialization;
+using StrawSharp.JsonConverters;
 
 namespace StrawSharp.Models.UserModels
 {
     public class UserMeta
     {
-        [JsonPropertyName("about")]
-        public string About { get; set; }
+        [JsonPropertyName("about")] public string About { get; set; }
 
-        [JsonPropertyName("website")]
-        public string Website { get; set; }
+        [JsonPropertyName("allow_active_vanity_url")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowVanityUrl { get; set; }
 
-        [JsonPropertyName("country_code")]
-        public string CountryCode { get; set; }
+        [JsonPropertyName("allow_clickable_links")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowClickableLinks { get; set; }
 
-        [JsonPropertyName("monthly_points")]
-        public int MonthlyPoints { get; set; }
+        [JsonPropertyName("allow_custom_poll_links")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowCustomPollLinks { get; set; }
 
-        [JsonPropertyName("total_points")]
-        public int TotalPoints { get; set; }
+        [JsonPropertyName("allow_custom_themes")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowCustomThemes { get; set; }
 
-        public UserMeta() { }
+        [JsonPropertyName("allow_image_upload")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowImageUpload { get; set; }
+
+        [JsonPropertyName("allow_priority_support")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowPrioritySupport { get; set; }
+
+        [JsonPropertyName("allow_remove_ads")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowRemoveAds { get; set; }
+        
+        [JsonPropertyName("allow_remove_branding")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowRemoveBranding { get; set; }
+        
+        [JsonPropertyName("allow_theme_logo")]
+        [JsonConverter(typeof(BitBoolConverter))]
+        public bool AllowThemeLogo { get; set; }
+        
+        [JsonPropertyName("workspace_members_quota")] public int WorkspaceMembersQuota { get; set; }
+        
+        [JsonPropertyName("workspace_members_used")] public int WorkspaceMembersUsed { get; set; }
+        
+        [JsonPropertyName("workspaces_quota")] public int WorkspacesQuota { get; set; }
+        
+        [JsonPropertyName("workspaces_used")] public int WorkspacesUsed { get; set; }
+
+        [JsonPropertyName("website")] public string Website { get; set; }
+
+        [JsonPropertyName("country_code")] public string CountryCode { get; set; }
+
+        [JsonPropertyName("monthly_points")] public int MonthlyPoints { get; set; }
+
+        [JsonPropertyName("total_points")] public int TotalPoints { get; set; }
+
+        public UserMeta()
+        {
+        }
 
         public UserMeta(UserMeta other)
         {
@@ -42,7 +84,7 @@ namespace StrawSharp.Models.UserModels
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((UserMeta)obj);
+            return Equals((UserMeta) obj);
         }
 
         public override int GetHashCode()

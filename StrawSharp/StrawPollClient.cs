@@ -59,15 +59,6 @@ namespace StrawSharp
             return response;
         }
 
-        public async Task<Poll> UpdatePollAsync(string pollId, Poll poll)
-        {
-            var endpoint = $"{ApiConstants.Endpoints.Polls}/{pollId}";
-            var method = HttpMethod.Put;
-
-            var response = await SendRestRequestAsync<Poll>(endpoint, method, poll);
-            return response;
-        }
-
         public async Task<Poll> UpdatePollAsync(Poll poll)
         {
             if (string.IsNullOrWhiteSpace(poll.Id))
@@ -75,6 +66,15 @@ namespace StrawSharp
                     "The poll ID cannot be null to use this overload. Consider using UpdatePollAsync(pollId, poll) instead.");
 
             return await UpdatePollAsync(poll.Id, poll);
+        }
+        
+        public async Task<Poll> UpdatePollAsync(string pollId, Poll poll)
+        {
+            var endpoint = $"{ApiConstants.Endpoints.Polls}/{pollId}";
+            var method = HttpMethod.Put;
+
+            var response = await SendRestRequestAsync<Poll>(endpoint, method, poll);
+            return response;
         }
 
         public async Task DeletePollAsync(string pollId)
@@ -85,6 +85,11 @@ namespace StrawSharp
             await SendRestRequestAsync(endpoint, method);
         }
 
+        public async Task<PollMedia> UploadMediaAsync(string fileName, byte[] content)
+        {
+            return await UploadMediaAsync(fileName, new MemoryStream(content));
+        }
+        
         public async Task<PollMedia> UploadMediaAsync(string fileName, Stream fileStream)
         {
             var endpoint = ApiConstants.Endpoints.Upload;
@@ -106,11 +111,6 @@ namespace StrawSharp
             return response;
         }
 
-        public async Task<PollMedia> UploadMediaAsync(string fileName, byte[] content)
-        {
-            return await UploadMediaAsync(fileName, new MemoryStream(content));
-        }
-
         private async Task SendRestRequestAsync(string endpoint, HttpMethod method, object data = null)
         {
             var message = new HttpRequestMessage
@@ -128,7 +128,8 @@ namespace StrawSharp
                 message.Content = new StringContent(content, Encoding.ASCII, "application/json");
             }
 
-            await Client.SendAsync(message);
+            var resp = await Client.SendAsync(message);
+            await HandleResponseAsync(resp);
         }
 
         private async Task<T> SendRestRequestAsync<T>(string endpoint, HttpMethod method, object data = null)

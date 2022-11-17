@@ -20,9 +20,6 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("allow_vpn_users")]
         public bool AllowVpn { get; set; }
 
-        [JsonPropertyName("custom_design_colors")]
-        public PollCustomDesignColors CustomDesignColors { get; set; } = new PollCustomDesignColors();
-
         [JsonPropertyName("deadline_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Deadline { get; set; }
@@ -51,9 +48,6 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("is_multiple_choice")]
         public bool IsMultipleChoice { get; set; }
 
-        [JsonPropertyName("is_private")]
-        public bool IsPrivate { get; set; }
-
         [JsonPropertyName("multiple_choice_min")]
         public int? MinChoices { get; set; }
 
@@ -75,9 +69,6 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("results_visibility")]
         public string ResultVisibility { get; set; } = EnumValues.ResultVisibility.Always;
 
-        [JsonPropertyName("use_custom_design")]
-        public bool UseCustomDesign { get; set; }
-
         public PollConfig() { }
 
         public PollConfig(PollConfig other)
@@ -87,35 +78,31 @@ namespace StrawSharp.Models.PollModels
             AllowIndeterminate = other.AllowIndeterminate;
             AllowOtherOption = other.AllowOtherOption;
             AllowVpn = other.AllowVpn;
-            CustomDesignColors = new PollCustomDesignColors(other.CustomDesignColors);
             Deadline = other.Deadline;
             DuplicationChecking = other.DuplicationChecking;
             EditVotePermissions = other.EditVotePermissions;
             ForceAppearance = other.ForceAppearance;
             HideParticipants = other.HideParticipants;
             IsMultipleChoice = other.IsMultipleChoice;
-            IsPrivate = other.IsPrivate;
             MinChoices = other.MinChoices;
             MaxChoices = other.MaxChoices;
             Winners = other.Winners;
             RandomizeOptions = other.RandomizeOptions;
             RequireName = other.RequireName;
             ResultVisibility = other.ResultVisibility;
-            UseCustomDesign = other.UseCustomDesign;
         }
 
         protected bool Equals(PollConfig other)
         {
             return AllowComments == other.AllowComments && AllowIndeterminate == other.AllowIndeterminate &&
                    AllowOtherOption == other.AllowOtherOption && AllowVpn == other.AllowVpn &&
-                   Equals(CustomDesignColors, other.CustomDesignColors) && Nullable.Equals(Deadline, other.Deadline) &&
+                   Nullable.Equals(Deadline, other.Deadline) &&
                    DuplicationChecking == other.DuplicationChecking &&
                    EditVotePermissions == other.EditVotePermissions && ForceAppearance == other.ForceAppearance &&
                    HideParticipants == other.HideParticipants && IsMultipleChoice == other.IsMultipleChoice &&
-                   IsPrivate == other.IsPrivate && MinChoices == other.MinChoices && MaxChoices == other.MaxChoices &&
+                   MinChoices == other.MinChoices && MaxChoices == other.MaxChoices &&
                    Winners == other.Winners && RandomizeOptions == other.RandomizeOptions &&
-                   RequireName == other.RequireName && ResultVisibility == other.ResultVisibility &&
-                   UseCustomDesign == other.UseCustomDesign;
+                   RequireName == other.RequireName && ResultVisibility == other.ResultVisibility;
         }
 
         public override bool Equals(object obj)
@@ -134,21 +121,18 @@ namespace StrawSharp.Models.PollModels
                 hashCode = (hashCode * 397) ^ AllowIndeterminate.GetHashCode();
                 hashCode = (hashCode * 397) ^ AllowOtherOption.GetHashCode();
                 hashCode = (hashCode * 397) ^ AllowVpn.GetHashCode();
-                hashCode = (hashCode * 397) ^ (CustomDesignColors != null ? CustomDesignColors.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ Deadline.GetHashCode();
                 hashCode = (hashCode * 397) ^ (DuplicationChecking != null ? DuplicationChecking.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (EditVotePermissions != null ? EditVotePermissions.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (ForceAppearance != null ? ForceAppearance.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ HideParticipants.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsMultipleChoice.GetHashCode();
-                hashCode = (hashCode * 397) ^ IsPrivate.GetHashCode();
                 hashCode = (hashCode * 397) ^ MinChoices.GetHashCode();
                 hashCode = (hashCode * 397) ^ MaxChoices.GetHashCode();
                 hashCode = (hashCode * 397) ^ Winners.GetHashCode();
                 hashCode = (hashCode * 397) ^ RandomizeOptions.GetHashCode();
                 hashCode = (hashCode * 397) ^ RequireName.GetHashCode();
                 hashCode = (hashCode * 397) ^ (ResultVisibility != null ? ResultVisibility.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ UseCustomDesign.GetHashCode();
                 return hashCode;
             }
         }

@@ -11,15 +11,14 @@ namespace StrawSharp.Tests.Integration
 {
     public class RestClientIntegrationTests
     {
-        private static readonly StrawPollClient Client = new();
+        private static readonly StrawPollClient Client = new StrawPollClient();
         private static Poll createdPoll;
 
         [Test, Order(50)]
-        public async Task CreateMultipleChoicePoll_PollObject_CreatedAnonymousPollWithSettings()
+        public async Task CreateMultipleChoicePoll_PollObject_CreatedMultipleChoicePollWithSettings()
         {
             const string title = "StrawSharp Test";
             const string pollType = PollType.MultipleChoice;
-            const bool isPrivate = true;
             const string duplicationChecking = DuplicationCheck.Session;
             const string description = "Test Poll";
             const string option1 = "Test1";
@@ -32,7 +31,6 @@ namespace StrawSharp.Tests.Integration
                 Type = pollType,
                 Config = new PollConfig
                 {
-                    IsPrivate = isPrivate,
                     DuplicationChecking = duplicationChecking
                 },
                 Meta = new PollMeta
@@ -56,7 +54,6 @@ namespace StrawSharp.Tests.Integration
             Assert.AreEqual(pollType, createdPoll.Type);
 
             Assert.NotNull(createdPoll.Config);
-            Assert.AreEqual(isPrivate, createdPoll.Config.IsPrivate);
             Assert.AreEqual(duplicationChecking, createdPoll.Config.DuplicationChecking);
 
             Assert.NotNull(createdPoll.Meta);
@@ -82,7 +79,7 @@ namespace StrawSharp.Tests.Integration
         }
 
         [Test, Order(150)]
-        public async Task UpdateMultipleChoicePoll_PollObject_UpdatedAnonymousPollWithSettings()
+        public async Task UpdateMultipleChoicePoll_PollObject_UpdatedMultipleChoicePollWithSettings()
         {
             const string duplicationCheck = DuplicationCheck.Ip;
             const string description = "Cool Description";

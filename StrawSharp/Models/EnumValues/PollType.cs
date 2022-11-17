@@ -5,5 +5,6 @@
         public const string MultipleChoice = "multiple_choice";
         public const string Meeting = "meeting";
         public const string RankedChoice = "ranked_choice";
+        public const string Image = "image_poll";
     }
 }

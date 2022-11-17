@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace TestApp
 
             // Upload Image
             var imageName = "TestImage.png";
-            var imagePath = Path.Combine(AppContext.BaseDirectory, imageName);
+            var imagePath = Path.Combine(AppContext.BaseDirectory, "Media", imageName);
             PollMedia uploadMediaResponse;
             await using (var file = File.OpenRead(imagePath))
             {
@@ -27,31 +28,14 @@ namespace TestApp
             }
 
             //Create Poll
-            var poll = PollBuilder.ForMeetingPoll()
+            var poll = PollBuilder
+                .ForMultipleChoicePoll()
                 .WithTitle("Test")
                 .WithDescription("StrawSharp Test")
-                .Private()
                 .WithDeadline(DateTime.Now + TimeSpan.FromMinutes(2))
-                .MultipleChoice()
-                .UseCustomDesign()
-                .WithTitleColor(Color.Red)
                 .WithMediaId(uploadMediaResponse.Id)
                 .WithTextOptions("Test 1", "Test 2", "Test 3")
                 .Build();
-
-            //var poll = new PollBuilder()
-            //    .WithPollType(PollType.Meeting)
-            //    .WithTitle("Test")
-            //    .WithDescription("StrawSharp Test")
-            //    .Private()
-            //    .WithDeadline(DateTime.Now + TimeSpan.FromMinutes(2))
-            //    .MultipleChoice()
-            //    .UseCustomDesign()
-            //    .WithTitleColor(Color.Red)
-            //    .WithMediaId(uploadMediaResponse.Id)
-            //    .WithDateOptions(DateTime.Now + TimeSpan.FromMinutes(2), DateTime.Now + TimeSpan.FromDays(2), DateTime.Now + TimeSpan.FromDays(15))
-            //    .RequireNames()
-            //    .Build();
 
             var createdPoll = await client.CreatePollAsync(poll);
             createdPoll.Config.Deadline = null;

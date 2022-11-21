@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Threading.Tasks;
 using StrawSharp;
 using StrawSharp.Builders;
 using StrawSharp.Models.EnumValues;
-using StrawSharp.Models.PollModels;
 
 namespace TestApp
 {

@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using StrawSharp.Models.EnumValues;
 
 namespace StrawSharp.Models.PollModels.Options
 {

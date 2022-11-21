@@ -7,7 +7,6 @@ namespace StrawSharp.Models.PollModels
 {
     public class PollConfig
     {
-
         [JsonPropertyName("allow_comments")]
         public bool AllowComments { get; set; }
 
@@ -47,7 +46,13 @@ namespace StrawSharp.Models.PollModels
 
         [JsonPropertyName("is_multiple_choice")]
         public bool IsMultipleChoice { get; set; }
-
+        
+        /// <summary>
+        /// The layout of the poll. Known values in <see cref="PollLayout"/>.
+        /// </summary>
+        [JsonPropertyName("layout")]
+        public string Layout { get; set; }
+        
         [JsonPropertyName("multiple_choice_min")]
         public int? MinChoices { get; set; }
 

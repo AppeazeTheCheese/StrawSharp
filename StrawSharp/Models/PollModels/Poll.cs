@@ -39,6 +39,9 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("type")]
         public string Type { get; set; } = PollType.MultipleChoice;
 
+        [JsonPropertyName("theme")] 
+        public PollTheme Theme { get; set; } = new PollTheme();
+
         [JsonPropertyName("version")]
         public string Version { get; set; }
 
@@ -73,7 +76,7 @@ namespace StrawSharp.Models.PollModels
 
         [JsonPropertyName("url")]
         public string Url { get; set; }
-        
+
         public Poll() { }
 
         public Poll(Poll other)

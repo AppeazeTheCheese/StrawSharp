@@ -43,21 +43,29 @@ namespace StrawSharp.Models.UserModels
         [JsonConverter(typeof(BitBoolConverter))]
         public bool AllowThemeLogo { get; set; }
         
-        [JsonPropertyName("workspace_members_quota")] public int WorkspaceMembersQuota { get; set; }
+        [JsonPropertyName("workspace_members_quota")]
+        public int WorkspaceMembersQuota { get; set; }
         
-        [JsonPropertyName("workspace_members_used")] public int WorkspaceMembersUsed { get; set; }
+        [JsonPropertyName("workspace_members_used")]
+        public int WorkspaceMembersUsed { get; set; }
         
-        [JsonPropertyName("workspaces_quota")] public int WorkspacesQuota { get; set; }
+        [JsonPropertyName("workspaces_quota")]
+        public int WorkspacesQuota { get; set; }
         
-        [JsonPropertyName("workspaces_used")] public int WorkspacesUsed { get; set; }
+        [JsonPropertyName("workspaces_used")]
+        public int WorkspacesUsed { get; set; }
 
-        [JsonPropertyName("website")] public string Website { get; set; }
+        [JsonPropertyName("website")]
+        public string Website { get; set; }
 
-        [JsonPropertyName("country_code")] public string CountryCode { get; set; }
+        [JsonPropertyName("country_code")]
+        public string CountryCode { get; set; }
 
-        [JsonPropertyName("monthly_points")] public int MonthlyPoints { get; set; }
+        [JsonPropertyName("monthly_points")]
+        public int MonthlyPoints { get; set; }
 
-        [JsonPropertyName("total_points")] public int TotalPoints { get; set; }
+        [JsonPropertyName("total_points")]
+        public int TotalPoints { get; set; }
 
         public UserMeta()
         {

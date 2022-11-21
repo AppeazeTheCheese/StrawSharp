@@ -106,10 +106,11 @@ namespace StrawSharp.Models.PollModels
         {
             return Id == other.Id && Title == other.Title && Equals(User, other.User) && Equals(Media, other.Media) &&
                    Equals(Options, other.Options) && Equals(Config, other.Config) && Equals(Meta, other.Meta) &&
-                   Type == other.Type && Version == other.Version && CreatedAt.Equals(other.CreatedAt) &&
-                   Nullable.Equals(UpdatedAt, other.UpdatedAt) && Nullable.Equals(ResetAt, other.ResetAt) &&
-                   Path == other.Path && Slug == other.Slug && PinCode == other.PinCode &&
-                   ResultsPath == other.ResultsPath && Status == other.Status && Url == other.Url;
+                   Type == other.Type && Equals(Theme, other.Theme) && Version == other.Version &&
+                   CreatedAt.Equals(other.CreatedAt) && Nullable.Equals(UpdatedAt, other.UpdatedAt) &&
+                   Nullable.Equals(ResetAt, other.ResetAt) && Path == other.Path && Slug == other.Slug &&
+                   PinCode == other.PinCode && ResultsPath == other.ResultsPath && Status == other.Status &&
+                   Url == other.Url;
         }
 
         public override bool Equals(object obj)
@@ -132,6 +133,7 @@ namespace StrawSharp.Models.PollModels
                 hashCode = (hashCode * 397) ^ (Config != null ? Config.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Meta != null ? Meta.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Type != null ? Type.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Theme != null ? Theme.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Version != null ? Version.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ CreatedAt.GetHashCode();
                 hashCode = (hashCode * 397) ^ UpdatedAt.GetHashCode();

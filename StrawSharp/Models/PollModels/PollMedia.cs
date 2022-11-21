@@ -37,7 +37,7 @@ namespace StrawSharp.Models.PollModels
 
         [JsonPropertyName("updated_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public PollMedia() { }
 
@@ -59,7 +59,7 @@ namespace StrawSharp.Models.PollModels
         {
             return Id == other.Id && Type == other.Type && Equals(User, other.User) && Source == other.Source &&
                    Url == other.Url && Width == other.Width && Height == other.Height &&
-                   CreatedAt.Equals(other.CreatedAt) && UpdatedAt.Equals(other.UpdatedAt);
+                   CreatedAt.Equals(other.CreatedAt) && Nullable.Equals(UpdatedAt, other.UpdatedAt);
         }
 
         public override bool Equals(object obj)

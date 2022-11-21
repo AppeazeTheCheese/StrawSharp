@@ -62,7 +62,7 @@ namespace StrawSharp.Models.PollModels
                    ParticipantCount == other.ParticipantCount && ViewCount == other.ViewCount &&
                    CommentCount == other.CommentCount && CreatorCountry == other.CreatorCountry &&
                    Nullable.Equals(PinCodeExpiration, other.PinCodeExpiration) &&
-                   Nullable.Equals(LastVoteAt, other.LastVoteAt) && TimeZone == other.TimeZone;
+                   Nullable.Equals(LastVoteAt, other.LastVoteAt) && Equals(TimeZone, other.TimeZone);
         }
 
         public override bool Equals(object obj)
@@ -70,7 +70,7 @@ namespace StrawSharp.Models.PollModels
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((PollMeta)obj);
+            return Equals((PollMeta) obj);
         }
 
         public override int GetHashCode()

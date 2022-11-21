@@ -101,11 +101,10 @@ namespace StrawSharp.Models.PollModels
         {
             return AllowComments == other.AllowComments && AllowIndeterminate == other.AllowIndeterminate &&
                    AllowOtherOption == other.AllowOtherOption && AllowVpn == other.AllowVpn &&
-                   Nullable.Equals(Deadline, other.Deadline) &&
-                   DuplicationChecking == other.DuplicationChecking &&
+                   Nullable.Equals(Deadline, other.Deadline) && DuplicationChecking == other.DuplicationChecking &&
                    EditVotePermissions == other.EditVotePermissions && ForceAppearance == other.ForceAppearance &&
                    HideParticipants == other.HideParticipants && IsMultipleChoice == other.IsMultipleChoice &&
-                   MinChoices == other.MinChoices && MaxChoices == other.MaxChoices &&
+                   Layout == other.Layout && MinChoices == other.MinChoices && MaxChoices == other.MaxChoices &&
                    Winners == other.Winners && RandomizeOptions == other.RandomizeOptions &&
                    RequireName == other.RequireName && ResultVisibility == other.ResultVisibility;
         }
@@ -132,6 +131,7 @@ namespace StrawSharp.Models.PollModels
                 hashCode = (hashCode * 397) ^ (ForceAppearance != null ? ForceAppearance.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ HideParticipants.GetHashCode();
                 hashCode = (hashCode * 397) ^ IsMultipleChoice.GetHashCode();
+                hashCode = (hashCode * 397) ^ (Layout != null ? Layout.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ MinChoices.GetHashCode();
                 hashCode = (hashCode * 397) ^ MaxChoices.GetHashCode();
                 hashCode = (hashCode * 397) ^ Winners.GetHashCode();

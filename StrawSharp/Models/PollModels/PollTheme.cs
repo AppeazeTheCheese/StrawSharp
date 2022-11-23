@@ -9,9 +9,11 @@ namespace StrawSharp.Models.PollModels
 {
     public class PollTheme
     {
-        [JsonPropertyName("id")] public string Id { get; set; }
+        [JsonPropertyName("id")] 
+        public string Id { get; set; }
 
-        [JsonPropertyName("name")] public string Name { get; set; }
+        [JsonPropertyName("name")] 
+        public string Name { get; set; }
 
         /// <summary>
         /// Known values in <see cref="PollPageAppearance"/>
@@ -147,6 +149,50 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("updated_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? UpdatedAt { get; set; }
+
+        public PollTheme() { }
+
+        public PollTheme(PollTheme other)
+        {
+            Id = other.Id;
+            Name = other.Name;
+            PageAppearance = other.PageAppearance;
+            PageLayout = other.PageLayout;
+            TitleColor = other.TitleColor;
+            TextColor = other.TextColor;
+            BorderColor = other.BorderColor;
+            BoxBackgroundColor = other.BoxBackgroundColor;
+            BoxBorderColor = other.BoxBorderColor;
+            InputBackgroundColor = other.InputBackgroundColor;
+            InputBorderColor = other.InputBorderColor;
+            InputHighlightColor = other.InputHighlightColor;
+            InputTextColor = other.InputTextColor;
+            PageBackgroundColor = other.PageBackgroundColor;
+            PrimaryButtonBackgroundColor = other.PrimaryButtonBackgroundColor;
+            PrimaryButtonBorderColor = other.PrimaryButtonBorderColor;
+            PrimaryButtonTextColor = other.PrimaryButtonTextColor;
+            SecondaryButtonBackgroundColor = other.SecondaryButtonBackgroundColor;
+            SecondaryButtonBorderColor = other.SecondaryButtonBorderColor;
+            SecondaryButtonTextColor = other.SecondaryButtonTextColor;
+            OptionColors = new List<Color>(other.OptionColors);
+            BackToPollText = other.BackToPollText;
+            InstructionsText = other.InstructionsText;
+            LiveResultsText = other.LiveResultsText;
+            ParticipantsText = other.ParticipantsText;
+            RefreshResultsText = other.RefreshResultsText;
+            ResultsText = other.ResultsText;
+            ShareText = other.ShareText;
+            TotalVotesText = other.TotalVotesText;
+            UpdateVoteText = other.UpdateVoteText;
+            VoteText = other.VoteText;
+            VotesText = other.VotesText;
+            Font = other.Font;
+            BoxShadow = other.BoxShadow;
+            HideShareButton = other.HideShareButton;
+            UseCustomText = other.UseCustomText;
+            CreatedAt = other.CreatedAt;
+            UpdatedAt = other.UpdatedAt;
+        }
 
         protected bool Equals(PollTheme other)
         {

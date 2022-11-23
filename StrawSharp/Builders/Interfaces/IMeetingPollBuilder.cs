@@ -11,6 +11,7 @@ namespace StrawSharp.Builders.Interfaces
         IMeetingPollBuilder WithDescription(string description);
         IMeetingPollBuilder WithMediaId(string mediaId);
         IMeetingPollBuilder WithThemeId(string themeId);
+        IMeetingPollBuilder WithWorkspaceId(string workspaceId);
         IMeetingPollBuilder AllowComments(bool allow = true);
         IMeetingPollBuilder AllowVpn(bool allow = true);
         IMeetingPollBuilder WithDeadline(DateTime? deadline);

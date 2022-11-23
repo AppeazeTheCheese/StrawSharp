@@ -11,6 +11,7 @@ namespace StrawSharp.Builders.Interfaces
         IMultipleChoicePollBuilder WithDescription(string description);
         IMultipleChoicePollBuilder WithMediaId(string mediaId);
         IMultipleChoicePollBuilder WithThemeId(string themeId);
+        IMultipleChoicePollBuilder WithWorkspaceId(string workspaceId);
         IMultipleChoicePollBuilder AllowComments(bool allow = true);
         IMultipleChoicePollBuilder AllowVpn(bool allow = true);
         IMultipleChoicePollBuilder WithDeadline(DateTime? deadline);

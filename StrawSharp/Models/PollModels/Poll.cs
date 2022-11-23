@@ -21,7 +21,7 @@ namespace StrawSharp.Models.PollModels
         public User User { get; set; }
 
         [JsonPropertyName("media")]
-        public PollMedia Media { get; set; } = new PollMedia();
+        public PollMedia Media { get; set; }
 
         [JsonPropertyName("poll_options")]
         [JsonConverter(typeof(PollOptionConverter))]
@@ -40,7 +40,9 @@ namespace StrawSharp.Models.PollModels
         public string Type { get; set; } = PollType.MultipleChoice;
 
         [JsonPropertyName("theme")] 
-        public PollTheme Theme { get; set; } = new PollTheme();
+        public PollTheme Theme { get; set; }
+
+        public Workspace Workspace { get; set; }
 
         [JsonPropertyName("version")]
         public string Version { get; set; }
@@ -90,6 +92,8 @@ namespace StrawSharp.Models.PollModels
             Config = new PollConfig(other.Config);
             Meta = new PollMeta(other.Meta);
             Type = other.Type;
+            Theme = new PollTheme(other.Theme);
+            Workspace = new Workspace(other.Workspace);
             Version = other.Version;
             CreatedAt = other.CreatedAt;
             UpdatedAt = other.UpdatedAt;
@@ -106,11 +110,11 @@ namespace StrawSharp.Models.PollModels
         {
             return Id == other.Id && Title == other.Title && Equals(User, other.User) && Equals(Media, other.Media) &&
                    Equals(Options, other.Options) && Equals(Config, other.Config) && Equals(Meta, other.Meta) &&
-                   Type == other.Type && Equals(Theme, other.Theme) && Version == other.Version &&
-                   CreatedAt.Equals(other.CreatedAt) && Nullable.Equals(UpdatedAt, other.UpdatedAt) &&
-                   Nullable.Equals(ResetAt, other.ResetAt) && Path == other.Path && Slug == other.Slug &&
-                   PinCode == other.PinCode && ResultsPath == other.ResultsPath && Status == other.Status &&
-                   Url == other.Url;
+                   Type == other.Type && Equals(Theme, other.Theme) && Equals(Workspace, other.Workspace) &&
+                   Version == other.Version && CreatedAt.Equals(other.CreatedAt) &&
+                   Nullable.Equals(UpdatedAt, other.UpdatedAt) && Nullable.Equals(ResetAt, other.ResetAt) &&
+                   Path == other.Path && Slug == other.Slug && PinCode == other.PinCode &&
+                   ResultsPath == other.ResultsPath && Status == other.Status && Url == other.Url;
         }
 
         public override bool Equals(object obj)
@@ -134,6 +138,7 @@ namespace StrawSharp.Models.PollModels
                 hashCode = (hashCode * 397) ^ (Meta != null ? Meta.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Type != null ? Type.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Theme != null ? Theme.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Workspace != null ? Workspace.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Version != null ? Version.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ CreatedAt.GetHashCode();
                 hashCode = (hashCode * 397) ^ UpdatedAt.GetHashCode();

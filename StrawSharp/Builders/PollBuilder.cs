@@ -163,9 +163,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithTitle(string title) => WithTitle(title);
-        IMeetingPollBuilder IMeetingPollBuilder.WithTitle(string title) => WithTitle(title);
-        IImagePollBuilder IImagePollBuilder.WithTitle(string title) => WithTitle(title);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithTitle(string title) => WithTitle(title);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithTitle(string title) => WithTitle(title);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithTitle(string title) => WithTitle(title);
 
         public PollBuilder WithDescription(string description)
         {
@@ -173,9 +173,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithDescription(string title) => WithDescription(title);
-        IMeetingPollBuilder IMeetingPollBuilder.WithDescription(string title) => WithDescription(title);
-        IImagePollBuilder IImagePollBuilder.WithDescription(string title) => WithDescription(title);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithDescription(string title) => WithDescription(title);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithDescription(string title) => WithDescription(title);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithDescription(string title) => WithDescription(title);
 
         public PollBuilder WithMediaId(string mediaId)
         {
@@ -183,9 +183,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithMediaId(string mediaId) => WithMediaId(mediaId);
-        IMeetingPollBuilder IMeetingPollBuilder.WithMediaId(string mediaId) => WithMediaId(mediaId);
-        IImagePollBuilder IImagePollBuilder.WithMediaId(string mediaId) => WithMediaId(mediaId);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithMediaId(string mediaId) => WithMediaId(mediaId);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithMediaId(string mediaId) => WithMediaId(mediaId);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithMediaId(string mediaId) => WithMediaId(mediaId);
 
         /// <summary>
         /// Sets the current theme given the theme ID.
@@ -199,9 +199,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithThemeId(string themeId) => WithThemeId(themeId);
-        IMeetingPollBuilder IMeetingPollBuilder.WithThemeId(string themeId) => WithThemeId(themeId);
-        IImagePollBuilder IImagePollBuilder.WithThemeId(string themeId) => WithThemeId(themeId);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithThemeId(string themeId) => WithThemeId(themeId);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithThemeId(string themeId) => WithThemeId(themeId);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithThemeId(string themeId) => WithThemeId(themeId);
 
         public PollBuilder WithWorkspaceId(string workspaceId)
         {
@@ -209,9 +209,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithWorkspaceId(string workspaceId) => WithWorkspaceId(workspaceId);
-        IMeetingPollBuilder IMeetingPollBuilder.WithWorkspaceId(string workspaceId) => WithWorkspaceId(workspaceId);
-        IImagePollBuilder IImagePollBuilder.WithWorkspaceId(string workspaceId) => WithWorkspaceId(workspaceId);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithWorkspaceId(string workspaceId) => WithWorkspaceId(workspaceId);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithWorkspaceId(string workspaceId) => WithWorkspaceId(workspaceId);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithWorkspaceId(string workspaceId) => WithWorkspaceId(workspaceId);
         
         public PollBuilder AllowComments(bool allow = true)
         {
@@ -219,9 +219,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.AllowComments(bool allow) => AllowComments(allow);
-        IMeetingPollBuilder IMeetingPollBuilder.AllowComments(bool allow) => AllowComments(allow);
-        IImagePollBuilder IImagePollBuilder.AllowComments(bool allow) => AllowComments(allow);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.AllowComments(bool allow) => AllowComments(allow);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.AllowComments(bool allow) => AllowComments(allow);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.AllowComments(bool allow) => AllowComments(allow);
 
 
         public PollBuilder AllowIndeterminate(bool allow = true)
@@ -246,9 +246,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.AllowVpn(bool allow) => AllowVpn(allow);
-        IMeetingPollBuilder IMeetingPollBuilder.AllowVpn(bool allow) => AllowVpn(allow);
-        IImagePollBuilder IImagePollBuilder.AllowVpn(bool allow) => AllowVpn(allow);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.AllowVpn(bool allow) => AllowVpn(allow);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.AllowVpn(bool allow) => AllowVpn(allow);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.AllowVpn(bool allow) => AllowVpn(allow);
 
         public PollBuilder WithDeadline(DateTime? deadline)
         {
@@ -256,9 +256,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithDeadline(DateTime? deadline) => WithDeadline(deadline);
-        IMeetingPollBuilder IMeetingPollBuilder.WithDeadline(DateTime? deadline) => WithDeadline(deadline);
-        IImagePollBuilder IImagePollBuilder.WithDeadline(DateTime? deadline) => WithDeadline(deadline);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithDeadline(DateTime? deadline) => WithDeadline(deadline);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithDeadline(DateTime? deadline) => WithDeadline(deadline);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithDeadline(DateTime? deadline) => WithDeadline(deadline);
 
         /// <summary>
         /// Set the type of duplication checking to be used by the poll.
@@ -271,9 +271,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithDuplicationChecking(string checkType) => WithDuplicationChecking(checkType);
-        IMeetingPollBuilder IMeetingPollBuilder.WithDuplicationChecking(string checkType) => WithDuplicationChecking(checkType);
-        IImagePollBuilder IImagePollBuilder.WithDuplicationChecking(string checkType) => WithDuplicationChecking(checkType);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithDuplicationChecking(string checkType) => WithDuplicationChecking(checkType);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithDuplicationChecking(string checkType) => WithDuplicationChecking(checkType);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithDuplicationChecking(string checkType) => WithDuplicationChecking(checkType);
 
         /// <summary>
         /// Set who has access to edit votes.
@@ -286,13 +286,13 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithEditVotePermissions(string permission) =>
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithEditVotePermissions(string permission) =>
             WithEditVotePermissions(permission);
 
-        IMeetingPollBuilder IMeetingPollBuilder.WithEditVotePermissions(string permission) =>
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithEditVotePermissions(string permission) =>
             WithEditVotePermissions(permission);
 
-        IImagePollBuilder IImagePollBuilder.WithEditVotePermissions(string permission) =>
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithEditVotePermissions(string permission) =>
             WithEditVotePermissions(permission);
 
         public PollBuilder HideParticipants(bool hide = true)
@@ -301,9 +301,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.HideParticipants(bool hide) => HideParticipants(hide);
-        IMeetingPollBuilder IMeetingPollBuilder.HideParticipants(bool hide) => HideParticipants(hide);
-        IImagePollBuilder IImagePollBuilder.HideParticipants(bool hide) => HideParticipants(hide);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.HideParticipants(bool hide) => HideParticipants(hide);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.HideParticipants(bool hide) => HideParticipants(hide);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.HideParticipants(bool hide) => HideParticipants(hide);
 
         public PollBuilder MultipleChoice(bool multipleChoice = true)
         {
@@ -365,9 +365,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.WithResultVisibility(string visibility) => WithResultVisibility(visibility);
-        IMeetingPollBuilder IMeetingPollBuilder.WithResultVisibility(string visibility) => WithResultVisibility(visibility);
-        IImagePollBuilder IImagePollBuilder.WithResultVisibility(string visibility) => WithResultVisibility(visibility);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.WithResultVisibility(string visibility) => WithResultVisibility(visibility);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.WithResultVisibility(string visibility) => WithResultVisibility(visibility);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.WithResultVisibility(string visibility) => WithResultVisibility(visibility);
 
         public PollBuilder WithConfig(PollConfig config)
         {
@@ -479,10 +479,9 @@ namespace StrawSharp.Builders
         {
             return RemoveOptions(options.AsEnumerable());
         }
-
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.RemoveOptions(params PollOption[] options) => RemoveOptions(options);
-        IMeetingPollBuilder IMeetingPollBuilder.RemoveOptions(params PollOption[] options) => RemoveOptions(options);
-        IImagePollBuilder IImagePollBuilder.RemoveOptions(params PollOption[] options) => RemoveOptions(options);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.RemoveOptions(params PollOption[] options) => RemoveOptions(options);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.RemoveOptions(params PollOption[] options) => RemoveOptions(options);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.RemoveOptions(params PollOption[] options) => RemoveOptions(options);
 
         public PollBuilder RemoveOptions(IEnumerable<PollOption> options)
         {
@@ -490,9 +489,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.RemoveOptions(IEnumerable<PollOption> options) => RemoveOptions(options);
-        IMeetingPollBuilder IMeetingPollBuilder.RemoveOptions(IEnumerable<PollOption> options) => RemoveOptions(options);
-        IImagePollBuilder IImagePollBuilder.RemoveOptions(IEnumerable<PollOption> options) => RemoveOptions(options);
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.RemoveOptions(IEnumerable<PollOption> options) => RemoveOptions(options);
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.RemoveOptions(IEnumerable<PollOption> options) => RemoveOptions(options);
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.RemoveOptions(IEnumerable<PollOption> options) => RemoveOptions(options);
 
         public PollBuilder ClearOptions()
         {
@@ -500,9 +499,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        IMultipleChoicePollBuilder IMultipleChoicePollBuilder.ClearOptions() => ClearOptions();
-        IMeetingPollBuilder IMeetingPollBuilder.ClearOptions() => ClearOptions();
-        IImagePollBuilder IImagePollBuilder.ClearOptions() => ClearOptions();
+        IMultipleChoicePollBuilder IPollBuilderBase<IMultipleChoicePollBuilder>.ClearOptions() => ClearOptions();
+        IMeetingPollBuilder IPollBuilderBase<IMeetingPollBuilder>.ClearOptions() => ClearOptions();
+        IImagePollBuilder IPollBuilderBase<IImagePollBuilder>.ClearOptions() => ClearOptions();
 
         public Poll Build()
         {

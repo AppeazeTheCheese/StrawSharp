@@ -126,12 +126,17 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("custom_text_update_vote")]
         public string UpdateVoteText { get; set; }
 
-        [JsonPropertyName("custom_text_vote")] public string VoteText { get; set; }
+        [JsonPropertyName("custom_text_vote")] 
+        public string VoteText { get; set; }
 
         [JsonPropertyName("custom_text_votes")]
         public string VotesText { get; set; }
+        
+        [JsonPropertyName("custom_text_input_field")]
+        public string InputFieldText { get; set; }
 
-        [JsonPropertyName("font")] public string Font { get; set; }
+        [JsonPropertyName("font")] 
+        public string Font { get; set; }
 
         [JsonPropertyName("box_shadow")]
         [JsonConverter(typeof(BitBoolConverter))]
@@ -140,7 +145,8 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("hide_share_button")]
         public bool HideShareButton { get; set; }
 
-        [JsonPropertyName("use_custom_text")] public bool UseCustomText { get; set; }
+        [JsonPropertyName("use_custom_text")] 
+        public bool UseCustomText { get; set; }
 
         [JsonPropertyName("created_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
@@ -186,6 +192,7 @@ namespace StrawSharp.Models.PollModels
             UpdateVoteText = other.UpdateVoteText;
             VoteText = other.VoteText;
             VotesText = other.VotesText;
+            InputFieldText = other.InputFieldText;
             Font = other.Font;
             BoxShadow = other.BoxShadow;
             HideShareButton = other.HideShareButton;
@@ -218,10 +225,10 @@ namespace StrawSharp.Models.PollModels
                    ParticipantsText == other.ParticipantsText && RefreshResultsText == other.RefreshResultsText &&
                    ResultsText == other.ResultsText && ShareText == other.ShareText &&
                    TotalVotesText == other.TotalVotesText && UpdateVoteText == other.UpdateVoteText &&
-                   VoteText == other.VoteText && VotesText == other.VotesText && Font == other.Font &&
-                   BoxShadow == other.BoxShadow && HideShareButton == other.HideShareButton &&
-                   UseCustomText == other.UseCustomText && CreatedAt.Equals(other.CreatedAt) &&
-                   Nullable.Equals(UpdatedAt, other.UpdatedAt);
+                   VoteText == other.VoteText && VotesText == other.VotesText &&
+                   InputFieldText == other.InputFieldText && Font == other.Font && BoxShadow == other.BoxShadow &&
+                   HideShareButton == other.HideShareButton && UseCustomText == other.UseCustomText &&
+                   CreatedAt.Equals(other.CreatedAt) && Nullable.Equals(UpdatedAt, other.UpdatedAt);
         }
 
         public override bool Equals(object obj)
@@ -269,6 +276,7 @@ namespace StrawSharp.Models.PollModels
                 hashCode = (hashCode * 397) ^ (UpdateVoteText != null ? UpdateVoteText.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (VoteText != null ? VoteText.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (VotesText != null ? VotesText.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (InputFieldText != null ? InputFieldText.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Font != null ? Font.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ BoxShadow.GetHashCode();
                 hashCode = (hashCode * 397) ^ HideShareButton.GetHashCode();

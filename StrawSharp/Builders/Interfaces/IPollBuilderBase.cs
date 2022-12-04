@@ -5,7 +5,7 @@ using StrawSharp.Models.PollModels.Options;
 
 namespace StrawSharp.Builders.Interfaces
 {
-    public interface IPollBuilderBase<T> where T : IPollBuilderBase<T>
+    public interface IPollBuilderBase<out T> where T : IPollBuilderBase<T>
     {
         T WithTitle(string title);
         T WithDescription(string description);

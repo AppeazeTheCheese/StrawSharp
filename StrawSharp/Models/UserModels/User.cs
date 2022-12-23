@@ -40,6 +40,7 @@ namespace StrawSharp.Models.UserModels
         public User(User other)
         {
             if(other == null) return;
+            
             Id = other.Id;
             Username = other.Username;
             DisplayName = other.DisplayName;

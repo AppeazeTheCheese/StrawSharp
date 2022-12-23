@@ -44,6 +44,7 @@ namespace StrawSharp.Models.PollModels
         public PollMedia(PollMedia other)
         {
             if (other == null) return;
+            
             Id = other.Id;
             Type = other.Type;
             User = new User(other.User);

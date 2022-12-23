@@ -30,6 +30,8 @@ namespace StrawSharp.Models
 
         public Workspace(Workspace other)
         {
+            if (other == null) return;
+            
             Id = other.Id;
             Name = other.Name;
             CreatedAt = other.CreatedAt;

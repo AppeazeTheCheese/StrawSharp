@@ -33,8 +33,10 @@ namespace StrawSharp.Models.PollModels.Options
         public PollOption(PollOption other)
         {
             if (other == null) return;
+            
             Id = other.Id;
             Description = other.Description;
+            Type = other.Type;
             IsWriteIn = other.IsWriteIn;
             MaxVotes = other.MaxVotes;
             Position = other.Position;

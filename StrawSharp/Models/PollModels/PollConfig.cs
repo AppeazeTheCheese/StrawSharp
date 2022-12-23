@@ -79,6 +79,7 @@ namespace StrawSharp.Models.PollModels
         public PollConfig(PollConfig other)
         {
             if (other == null) return;
+            
             AllowComments = other.AllowComments;
             AllowIndeterminate = other.AllowIndeterminate;
             AllowOtherOption = other.AllowOtherOption;
@@ -89,6 +90,7 @@ namespace StrawSharp.Models.PollModels
             ForceAppearance = other.ForceAppearance;
             HideParticipants = other.HideParticipants;
             IsMultipleChoice = other.IsMultipleChoice;
+            Layout = other.Layout;
             MinChoices = other.MinChoices;
             MaxChoices = other.MaxChoices;
             Winners = other.Winners;

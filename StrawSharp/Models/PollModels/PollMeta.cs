@@ -44,6 +44,7 @@ namespace StrawSharp.Models.PollModels
         public PollMeta(PollMeta other)
         {
             if (other == null) return;
+            
             Description = other.Description;
             Location = other.Location;
             VoteCount = other.VoteCount;

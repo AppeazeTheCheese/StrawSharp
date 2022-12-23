@@ -42,6 +42,7 @@ namespace StrawSharp.Models.UserModels
         public UserConfig(UserConfig other)
         {
             if (other == null) return;
+            
             Appearance = other.Appearance;
             ClockType = other.ClockType;
             FirstDayOfWeek = other.FirstDayOfWeek;

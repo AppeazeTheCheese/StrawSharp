@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
 using StrawSharp.Models.EnumValues;
@@ -16,13 +17,13 @@ namespace StrawSharp.Models.PollModels
         public string Name { get; set; }
 
         /// <summary>
-        /// Known values in <see cref="PollPageAppearance"/>
+        /// Known values in <see cref="EnumValues.PageAppearance"/>
         /// </summary>
         [JsonPropertyName("page_appearance")]
         public string PageAppearance { get; set; }
 
         /// <summary>
-        /// Known values in <see cref="PollPageLayout"/>
+        /// Known values in <see cref="EnumValues.PageLayout"/>
         /// </summary>
         [JsonPropertyName("page_layout")]
         public string PageLayout { get; set; }
@@ -97,7 +98,7 @@ namespace StrawSharp.Models.PollModels
 
         [JsonPropertyName("option_colors")]
         [JsonConverter(typeof(StringArrayColorListConverter))]
-        public List<Color> OptionColors { get; set; }
+        public List<Color> OptionColors { get; set; } = new List<Color>();
 
         [JsonPropertyName("custom_text_back_to_poll")]
         public string BackToPollText { get; set; }
@@ -160,6 +161,8 @@ namespace StrawSharp.Models.PollModels
 
         public PollTheme(PollTheme other)
         {
+            if(other == null) return;
+            
             Id = other.Id;
             Name = other.Name;
             PageAppearance = other.PageAppearance;
@@ -169,6 +172,7 @@ namespace StrawSharp.Models.PollModels
             BorderColor = other.BorderColor;
             BoxBackgroundColor = other.BoxBackgroundColor;
             BoxBorderColor = other.BoxBorderColor;
+            BoxBorderTopColor = other.BoxBorderTopColor;
             InputBackgroundColor = other.InputBackgroundColor;
             InputBorderColor = other.InputBorderColor;
             InputHighlightColor = other.InputHighlightColor;
@@ -220,7 +224,7 @@ namespace StrawSharp.Models.PollModels
                    Nullable.Equals(SecondaryButtonBackgroundColor, other.SecondaryButtonBackgroundColor) &&
                    Nullable.Equals(SecondaryButtonBorderColor, other.SecondaryButtonBorderColor) &&
                    Nullable.Equals(SecondaryButtonTextColor, other.SecondaryButtonTextColor) &&
-                   Equals(OptionColors, other.OptionColors) && BackToPollText == other.BackToPollText &&
+                   OptionColors.SequenceEqual(other.OptionColors) && BackToPollText == other.BackToPollText &&
                    InstructionsText == other.InstructionsText && LiveResultsText == other.LiveResultsText &&
                    ParticipantsText == other.ParticipantsText && RefreshResultsText == other.RefreshResultsText &&
                    ResultsText == other.ResultsText && ShareText == other.ShareText &&

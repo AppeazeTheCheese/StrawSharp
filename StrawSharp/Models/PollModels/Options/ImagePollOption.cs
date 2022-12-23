@@ -25,6 +25,7 @@ namespace StrawSharp.Models.PollModels.Options
         public ImagePollOption(ImagePollOption other) : base(other)
         {
             if (other == null) return;
+            
             Media = new PollMedia(other.Media);
             Value = other.Value;
         }

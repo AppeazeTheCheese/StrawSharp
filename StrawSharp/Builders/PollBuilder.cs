@@ -11,73 +11,76 @@ namespace StrawSharp.Builders
 {
     public class PollBuilder : IMultipleChoicePollBuilder, IMeetingPollBuilder, IImagePollBuilder
     {
-        private string _type = PollType.MultipleChoice;
-        private PollMedia _media = new PollMedia();
-        private PollConfig _config = new PollConfig();
-        private PollMeta _meta = new PollMeta();
-        private PollTheme _theme = new PollTheme();
-        private Workspace _workspace = new Workspace();
-        private List<PollOption> _options = new List<PollOption>();
+        private readonly Poll _poll;
 
         public string Title { get; set; }
 
         public string Type
         {
-            get => _type;
-            set => _type = value ?? PollType.MultipleChoice;
+            get => _poll.Type;
+            set => _poll.Type = value ?? PollType.MultipleChoice;
         }
 
         public PollMedia Media
         {
-            get => _media;
-            set => _media = value ?? new PollMedia();
+            get => _poll.Media;
+            set => _poll.Media = value ?? new PollMedia();
         }
 
         public PollConfig Config
         {
-            get => _config;
-            set => _config = value ?? new PollConfig();
+            get => _poll.Config;
+            set => _poll.Config = value ?? new PollConfig();
         }
 
         public PollMeta Meta
         {
-            get => _meta;
-            set => _meta = value ?? new PollMeta();
+            get => _poll.Meta;
+            set => _poll.Meta = value ?? new PollMeta();
         }
 
         public List<PollOption> Options
         {
-            get => _options;
-            set => _options = value ?? new List<PollOption>();
+            get => _poll.Options;
+            set => _poll.Options = value ?? new List<PollOption>();
         }
 
         public PollTheme Theme
         {
-            get => _theme;
-            set => _theme = value ?? new PollTheme();
+            get => _poll.Theme;
+            set => _poll.Theme = value ?? new PollTheme();
         }
 
         public Workspace Workspace
         {
-            get => _workspace;
-            set => _workspace = value ?? new Workspace();
+            get => _poll.Workspace;
+            set => _poll.Workspace = value ?? new Workspace();
         }
 
         public string Status { get; set; } = PollStatus.Published;
 
+        public PollBuilder()
+        {
+            _poll = new Poll
+            {
+                Type = PollType.MultipleChoice,
+                Media = new PollMedia(),
+                Config = new PollConfig(),
+                Meta = new PollMeta(),
+                Options = new List<PollOption>(),
+                Theme = new PollTheme(),
+                Workspace = new Workspace()
+            };
+        }
+
+        public PollBuilder(Poll poll)
+        {
+            _poll = new Poll(poll);
+        }
+
         public static PollBuilder From(Poll poll)
         {
-            if (poll == null) throw new ArgumentNullException(nameof(poll));
-
-            return new PollBuilder
-            {
-                Title = poll.Title,
-                Type = poll.Type,
-                Media = new PollMedia(poll.Media),
-                Config = new PollConfig(poll.Config),
-                Meta = new PollMeta(poll.Meta),
-                Options = poll.Options.Select(x => (PollOption) Activator.CreateInstance(x.GetType(), x)).ToList()
-            };
+            return new PollBuilder(poll);
         }
 
         public static IMultipleChoicePollBuilder ForMultipleChoicePoll()
@@ -505,28 +508,7 @@ namespace StrawSharp.Builders
 
         public Poll Build()
         {
-            var poll = new Poll
-            {
-                Title = Title,
-                Type = Type,
-                Status = Status,
-                Config = Config
-            };
-
-            if (!string.IsNullOrWhiteSpace(Media.Id))
-                poll.Media = new PollMedia {Id = Media.Id};
-            if (!string.IsNullOrWhiteSpace(Theme.Id))
-                poll.Theme = new PollTheme {Id = Theme.Id};
-            if (!string.IsNullOrWhiteSpace(Workspace.Id))
-                poll.Workspace = new Workspace {Id = Workspace.Id};
-
-            if (!string.IsNullOrWhiteSpace(Meta.Description))
-                poll.Meta.Description = Meta.Description;
-            if (!string.IsNullOrWhiteSpace(Meta.Location))
-                poll.Meta.Location = Meta.Location;
-
-            poll.Options.AddRange(Options.Where(x => x != null));
-            return poll;
+            return new Poll(_poll);
         }
     }
 }

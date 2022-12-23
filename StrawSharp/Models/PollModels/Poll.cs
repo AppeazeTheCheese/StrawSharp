@@ -37,7 +37,7 @@ namespace StrawSharp.Models.PollModels
         /// The type of poll. Known values in <see cref="EnumValues.PollType"/>.
         /// </summary>
         [JsonPropertyName("type")]
-        public string Type { get; set; } = PollType.MultipleChoice;
+        public string Type { get; set; }
 
         [JsonPropertyName("theme")] 
         public PollTheme Theme { get; set; }
@@ -84,6 +84,7 @@ namespace StrawSharp.Models.PollModels
         public Poll(Poll other)
         {
             if (other == null) return;
+            
             Id = other.Id;
             Title = other.Title;
             User = new User(other.User);
@@ -109,7 +110,7 @@ namespace StrawSharp.Models.PollModels
         protected bool Equals(Poll other)
         {
             return Id == other.Id && Title == other.Title && Equals(User, other.User) && Equals(Media, other.Media) &&
-                   Equals(Options, other.Options) && Equals(Config, other.Config) && Equals(Meta, other.Meta) &&
+                   Options.SequenceEqual(other.Options) && Equals(Config, other.Config) && Equals(Meta, other.Meta) &&
                    Type == other.Type && Equals(Theme, other.Theme) && Equals(Workspace, other.Workspace) &&
                    Version == other.Version && CreatedAt.Equals(other.CreatedAt) &&
                    Nullable.Equals(UpdatedAt, other.UpdatedAt) && Nullable.Equals(ResetAt, other.ResetAt) &&

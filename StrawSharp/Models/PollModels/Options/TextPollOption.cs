@@ -21,6 +21,7 @@ namespace StrawSharp.Models.PollModels.Options
         public TextPollOption(TextPollOption other) : base(other)
         {
             if (other == null) return;
+            
             Value = other.Value;
         }
 

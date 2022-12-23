@@ -5,7 +5,8 @@ namespace StrawSharp.Models.UserModels
 {
     public class UserMeta
     {
-        [JsonPropertyName("about")] public string About { get; set; }
+        [JsonPropertyName("about")] 
+        public string About { get; set; }
 
         [JsonPropertyName("allow_active_vanity_url")]
         [JsonConverter(typeof(BitBoolConverter))]
@@ -74,7 +75,21 @@ namespace StrawSharp.Models.UserModels
         public UserMeta(UserMeta other)
         {
             if (other == null) return;
+            
             About = other.About;
+            AllowVanityUrl = other.AllowVanityUrl;
+            AllowClickableLinks = other.AllowClickableLinks;
+            AllowCustomPollLinks = other.AllowCustomPollLinks;
+            AllowCustomThemes = other.AllowCustomThemes;
+            AllowImageUpload = other.AllowImageUpload;
+            AllowPrioritySupport = other.AllowPrioritySupport;
+            AllowRemoveAds = other.AllowRemoveAds;
+            AllowRemoveBranding = other.AllowRemoveBranding;
+            AllowThemeLogo = other.AllowThemeLogo;
+            WorkspaceMembersQuota = other.WorkspaceMembersQuota;
+            WorkspaceMembersUsed = other.WorkspaceMembersUsed;
+            WorkspacesQuota = other.WorkspacesQuota;
+            WorkspacesUsed = other.WorkspacesUsed;
             Website = other.Website;
             CountryCode = other.CountryCode;
             MonthlyPoints = other.MonthlyPoints;
@@ -83,8 +98,16 @@ namespace StrawSharp.Models.UserModels
 
         protected bool Equals(UserMeta other)
         {
-            return About == other.About && CountryCode == other.CountryCode && MonthlyPoints == other.MonthlyPoints &&
-                   TotalPoints == other.TotalPoints && Website == other.Website;
+            return About == other.About && AllowVanityUrl == other.AllowVanityUrl &&
+                   AllowClickableLinks == other.AllowClickableLinks &&
+                   AllowCustomPollLinks == other.AllowCustomPollLinks && AllowCustomThemes == other.AllowCustomThemes &&
+                   AllowImageUpload == other.AllowImageUpload && AllowPrioritySupport == other.AllowPrioritySupport &&
+                   AllowRemoveAds == other.AllowRemoveAds && AllowRemoveBranding == other.AllowRemoveBranding &&
+                   AllowThemeLogo == other.AllowThemeLogo && WorkspaceMembersQuota == other.WorkspaceMembersQuota &&
+                   WorkspaceMembersUsed == other.WorkspaceMembersUsed && WorkspacesQuota == other.WorkspacesQuota &&
+                   WorkspacesUsed == other.WorkspacesUsed && Website == other.Website &&
+                   CountryCode == other.CountryCode && MonthlyPoints == other.MonthlyPoints &&
+                   TotalPoints == other.TotalPoints;
         }
 
         public override bool Equals(object obj)
@@ -100,10 +123,23 @@ namespace StrawSharp.Models.UserModels
             unchecked
             {
                 var hashCode = (About != null ? About.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ AllowVanityUrl.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowClickableLinks.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowCustomPollLinks.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowCustomThemes.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowImageUpload.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowPrioritySupport.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowRemoveAds.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowRemoveBranding.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllowThemeLogo.GetHashCode();
+                hashCode = (hashCode * 397) ^ WorkspaceMembersQuota;
+                hashCode = (hashCode * 397) ^ WorkspaceMembersUsed;
+                hashCode = (hashCode * 397) ^ WorkspacesQuota;
+                hashCode = (hashCode * 397) ^ WorkspacesUsed;
+                hashCode = (hashCode * 397) ^ (Website != null ? Website.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (CountryCode != null ? CountryCode.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ MonthlyPoints;
                 hashCode = (hashCode * 397) ^ TotalPoints;
-                hashCode = (hashCode * 397) ^ (Website != null ? Website.GetHashCode() : 0);
                 return hashCode;
             }
         }

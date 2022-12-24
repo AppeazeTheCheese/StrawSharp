@@ -13,7 +13,11 @@ namespace StrawSharp.Builders
     {
         private readonly Poll _poll;
 
-        public string Title { get; set; }
+        public string Title 
+        { 
+            get => _poll.Title; 
+            set => _poll.Title = value;
+        }
 
         public string Type
         {

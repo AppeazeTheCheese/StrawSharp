@@ -42,6 +42,7 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("theme")] 
         public PollTheme Theme { get; set; }
 
+        [JsonPropertyName("workspace")]
         public Workspace Workspace { get; set; }
 
         [JsonPropertyName("version")]

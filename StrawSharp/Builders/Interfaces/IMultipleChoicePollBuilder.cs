@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using StrawSharp.Models.PollModels.Options;
+﻿using System.Collections.Generic;
 
 namespace StrawSharp.Builders.Interfaces
 {

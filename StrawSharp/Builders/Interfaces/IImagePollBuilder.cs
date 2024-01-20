@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using StrawSharp.Models.PollModels.Options;
-
-namespace StrawSharp.Builders.Interfaces
+﻿namespace StrawSharp.Builders.Interfaces
 {
     public interface IImagePollBuilder : IPollBuilderBase<IImagePollBuilder>
     {

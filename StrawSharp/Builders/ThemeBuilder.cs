@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using StrawSharp.Models.EnumValues;
 using StrawSharp.Models.PollModels;
 
 namespace StrawSharp.Builders
@@ -11,6 +10,9 @@ namespace StrawSharp.Builders
     {
         private PollTheme _theme = new PollTheme();
 
+        /// <summary>
+        /// The name of the theme.
+        /// </summary>
         public string Name
         {
             get => _theme.Name; 
@@ -18,7 +20,7 @@ namespace StrawSharp.Builders
         }
 
         /// <summary>
-        /// Known values in <see cref="Models.EnumValues.PageAppearance"/>
+        /// The appearance of the page. Known values in <see cref="Models.EnumValues.PageAppearance"/>
         /// </summary>
         public string PageAppearance
         {
@@ -27,7 +29,7 @@ namespace StrawSharp.Builders
         }
 
         /// <summary>
-        /// Known values in <see cref="Models.EnumValues.PageLayout"/>
+        /// The layout of the page. Known values in <see cref="Models.EnumValues.PageLayout"/>
         /// </summary>
         public string PageLayout
         {
@@ -35,180 +37,209 @@ namespace StrawSharp.Builders
             set => _theme.PageLayout = value;
         }
 
+        /// <summary>
+        /// The color of the poll's title text.
+        /// </summary>
         public Color? TitleColor
         {
-            get => _theme.TitleColor; 
-            set => _theme.TitleColor = value;
+            get => _theme.Colors.TitleColor; 
+            set => _theme.Colors.TitleColor = value;
         }
         
+        /// <summary>
+        /// The color of the poll's text.
+        /// </summary>
         public Color? TextColor 
         {
-            get => _theme.TextColor; 
-            set => _theme.TextColor = value;
+            get => _theme.Colors.TextColor; 
+            set => _theme.Colors.TextColor = value;
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
         public Color? BorderColor
         {
-            get => _theme.BorderColor; 
-            set => _theme.BorderColor = value;
+            get => _theme.Colors.BorderColor; 
+            set => _theme.Colors.BorderColor = value;
         }
 
+        /// <summary>
+        /// The background color of the box containing the poll.
+        /// </summary>
         public Color? BoxBackgroundColor
         {
-            get => _theme.BoxBackgroundColor; 
-            set => _theme.BoxBackgroundColor = value;
+            get => _theme.Colors.BoxBackgroundColor; 
+            set => _theme.Colors.BoxBackgroundColor = value;
         }
 
+        /// <summary>
+        /// The border color of the box containing the poll.
+        /// </summary>
         public Color? BoxBorderColor
         {
-            get => _theme.BoxBorderColor; 
-            set => _theme.BoxBorderColor = value;
+            get => _theme.Colors.BoxBorderColor; 
+            set => _theme.Colors.BoxBorderColor = value;
         }
 
+        /// <summary>
+        /// The top border color of the box containing the poll.
+        /// </summary>
         public Color? BoxBorderTopColor
         {
-            get => _theme.BoxBorderTopColor; 
-            set => _theme.BoxBorderTopColor = value;
+            get => _theme.Colors.BoxBorderTopColor; 
+            set => _theme.Colors.BoxBorderTopColor = value;
         }
 
-        public Color? InputBackgroundColor
-        {
-            get => _theme.InputBackgroundColor; 
-            set => _theme.InputBackgroundColor = value;
-        }
-
-        public Color? InputBorderColor
-        {
-            get => _theme.InputBorderColor; 
-            set => _theme.InputBorderColor = value;
-        }
-
-        public Color? InputHighlightColor
-        {
-            get => _theme.InputHighlightColor; 
-            set => _theme.InputHighlightColor = value;
-        }
-
-        public Color? InputTextColor
-        {
-            get => _theme.InputTextColor; 
-            set => _theme.InputTextColor = value;
-        }
-
+        /// <summary>
+        /// The background color of the page.
+        /// </summary>
         public Color? PageBackgroundColor
         {
-            get => _theme.PageBackgroundColor; 
-            set => _theme.PageBackgroundColor = value;
+            get => _theme.Colors.PageBackgroundColor; 
+            set => _theme.Colors.PageBackgroundColor = value;
         }
 
-        public Color? PrimaryButtonBackgroundColor
+        /// <summary>
+        /// The background color of the buttons.
+        /// </summary>
+        public Color? ButtonBackgroundColor
         {
-            get => _theme.PrimaryButtonBackgroundColor; 
-            set => _theme.PrimaryButtonBackgroundColor = value;
+            get => _theme.Colors.ButtonBackgroundColor; 
+            set => _theme.Colors.ButtonBackgroundColor = value;
         }
 
-        public Color? PrimaryButtonBorderColor
+        /// <summary>
+        /// The border color of the buttons.
+        /// </summary>
+        public Color? ButtonBorderColor
         {
-            get => _theme.PrimaryButtonBorderColor; 
-            set => _theme.PrimaryButtonBorderColor = value;
+            get => _theme.Colors.ButtonBorderColor; 
+            set => _theme.Colors.ButtonBorderColor = value;
         }
 
-        public Color? PrimaryButtonTextColor
+        /// <summary>
+        /// The text color of the buttons.
+        /// </summary>
+        public Color? ButtonTextColor
         {
-            get => _theme.PrimaryButtonTextColor; 
-            set => _theme.PrimaryButtonTextColor = value;
+            get => _theme.Colors.ButtonTextColor; 
+            set => _theme.Colors.ButtonTextColor = value;
         }
 
-        public Color? SecondaryButtonBackgroundColor
-        {
-            get => _theme.SecondaryButtonBackgroundColor;
-            set => _theme.SecondaryButtonBackgroundColor = value;
-        }
-
-        public Color? SecondaryButtonBorderColor
-        {
-            get => _theme.SecondaryButtonBorderColor; 
-            set => _theme.SecondaryButtonBorderColor = value;
-        }
-
-        public Color? SecondaryButtonTextColor
-        {
-            get => _theme.SecondaryButtonTextColor; 
-            set => _theme.SecondaryButtonTextColor = value;
-        }
-        
+        /// <summary>
+        /// The color of the poll options. The index of these colors is mapped directly to the list containing the poll's options.
+        /// If there are more options in the poll than colors in this list, the colors will be repeated as many times as needed to cover every poll option.
+        /// </summary>
         public List<Color> OptionColors
         {
             get => _theme.OptionColors;
             set => _theme.OptionColors = value ?? new List<Color>();
         }
 
+        /// <summary>
+        /// Custom text for the "Back to poll" button.
+        /// </summary>
         public string BackToPollText
         {
             get => _theme.BackToPollText; 
             set => _theme.BackToPollText = value;
         }
 
+        /// <summary>
+        /// TODO
+        /// Custom text to replace "Make a choice" above the poll options.
+        /// </summary>
         public string InstructionsText
         {
             get => _theme.InstructionsText; 
             set => _theme.InstructionsText = value;
         }
 
+        /// <summary>
+        /// Custom text for the "Live results" button.
+        /// </summary>
         public string LiveResultsText
         {
             get => _theme.LiveResultsText; 
             set => _theme.LiveResultsText = value;
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
         public string ParticipantsText
         {
             get => _theme.ParticipantsText; 
             set => _theme.ParticipantsText = value;
         }
 
+        /// <summary>
+        /// Custom text for the "Refresh results" button.
+        /// </summary>
         public string RefreshResultsText
         {
             get => _theme.RefreshResultsText; 
             set => _theme.RefreshResultsText = value;
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
         public string ResultsText
         {
             get => _theme.ResultsText; 
             set => _theme.ResultsText = value;
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
         public string ShareText
         {
             get => _theme.ShareText; 
             set => _theme.ShareText = value;
         }
 
+        /// <summary>
+        /// Custom text to replace "Total votes" at the bottom of the poll's results screen.
+        /// </summary>
         public string TotalVotesText
         {
             get => _theme.TotalVotesText; 
             set => _theme.TotalVotesText = value;
         }
 
+        /// <summary>
+        /// Custom text for the "Update vote" button.
+        /// </summary>
         public string UpdateVoteText
         {
             get  => _theme.UpdateVoteText; 
             set => _theme.UpdateVoteText = value;
         }
 
+        /// <summary>
+        /// Custom text for the "Vote" button.
+        /// </summary>
         public string VoteText
         {
             get => _theme.VoteText; 
             set => _theme.VoteText = value;
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
         public string VotesText
         {
             get => _theme.VotesText; 
             set => _theme.VotesText = value;
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
         public string InputFieldText
         {
             get => _theme.InputFieldText; 
@@ -313,69 +344,27 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        public ThemeBuilder WithInputBackgroundColor(Color? color)
-        {
-            InputBackgroundColor = color;
-            return this;
-        }
-
-        public ThemeBuilder WithInputBorderColor(Color? color)
-        {
-            InputBorderColor = color;
-            return this;
-        }
-
-        public ThemeBuilder WithInputHighlightColor(Color? color)
-        {
-            InputHighlightColor = color;
-            return this;
-        }
-
-        public ThemeBuilder WithInputTextColor(Color? color)
-        {
-            InputTextColor = color;
-            return this;
-        }
-
         public ThemeBuilder WithPageBackgroundColor(Color? color)
         {
             PageBackgroundColor = color;
             return this;
         }
 
-        public ThemeBuilder WithPrimaryButtonBackgroundColor(Color? color)
+        public ThemeBuilder WithButtonBackgroundColor(Color? color)
         {
-            PrimaryButtonBackgroundColor = color;
+            ButtonBackgroundColor = color;
             return this;
         }
 
-        public ThemeBuilder WithPrimaryButtonBorderColor(Color? color)
+        public ThemeBuilder WithButtonBorderColor(Color? color)
         {
-            PrimaryButtonBorderColor = color;
+            ButtonBorderColor = color;
             return this;
         }
 
-        public ThemeBuilder WithPrimaryButtonTextColor(Color? color)
+        public ThemeBuilder WithButtonTextColor(Color? color)
         {
-            PrimaryButtonTextColor = color;
-            return this;
-        }
-
-        public ThemeBuilder WithSecondaryButtonBackgroundColor(Color? color)
-        {
-            SecondaryButtonBackgroundColor = color;
-            return this;
-        }
-
-        public ThemeBuilder WithSecondaryButtonBorderColor(Color? color)
-        {
-            SecondaryButtonBorderColor = color;
-            return this;
-        }
-
-        public ThemeBuilder WithSecondaryButtonTextColor(Color? color)
-        {
-            SecondaryButtonTextColor = color;
+            ButtonTextColor = color;
             return this;
         }
 
@@ -515,21 +504,9 @@ namespace StrawSharp.Builders
             return this;
         }
 
-        public ThemeBuilder WithoutBoxShadow()
-        {
-            BoxShadow = false;
-            return this;
-        }
-
         public ThemeBuilder WithShareButton(bool enabled = true)
         {
             HideShareButton = !enabled;
-            return this;
-        }
-
-        public ThemeBuilder WithoutShareButton()
-        {
-            HideShareButton = true;
             return this;
         }
 
@@ -538,13 +515,6 @@ namespace StrawSharp.Builders
             UseCustomText = enabled;
             return this;
         }
-
-        public ThemeBuilder WithoutCustomText()
-        {
-            UseCustomText = false;
-            return this;
-        }
-
 
         public PollTheme Build()
         {

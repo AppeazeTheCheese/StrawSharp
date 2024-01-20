@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using AutoFixture;
 using AutoFixture.NUnit3;
 using FluentAssertions;
@@ -16,22 +15,22 @@ namespace StrawSharp.Tests
     public class CopyConstructorAndEqualityTests
     {
 
-        private IFixture fixture;
+        private IFixture _fixture;
 
         [OneTimeSetUp]
         public void Setup()
         {
             var rand = new Random();
 
-            fixture = new Fixture();
-            fixture.Customize<Color>(c => c.FromFactory(() =>
+            _fixture = new Fixture();
+            _fixture.Customize<Color>(c => c.FromFactory(() =>
                 Color.FromArgb(rand.Next(0, 256), rand.Next(0, 256), rand.Next(0, 256), rand.Next(0, 256))));
         }
 
         [Test, AutoData]
         public void PollThemeCopyConstructorTests()
         {
-            var theme = fixture.Create<PollTheme>();
+            var theme = _fixture.Create<PollTheme>();
             var copy = new PollTheme(theme);
 
             ShouldMatch(copy, theme);
@@ -41,7 +40,7 @@ namespace StrawSharp.Tests
         [Test, AutoData]
         public void PollMetaCopyConstructorTests()
         {
-            var meta = fixture.Create<PollMeta>();
+            var meta = _fixture.Create<PollMeta>();
             var copy = new PollMeta(meta);
 
             ShouldMatch(copy, meta);
@@ -51,7 +50,7 @@ namespace StrawSharp.Tests
         [Test, AutoData]
         public void PollConfigCopyConstructorTests()
         {
-            var config = fixture.Create<PollConfig>();
+            var config = _fixture.Create<PollConfig>();
             var copy = new PollConfig(config);
 
             ShouldMatch(copy, config);
@@ -61,7 +60,7 @@ namespace StrawSharp.Tests
         [Test, AutoData]
         public void PollMediaCopyConstructorTests()
         {
-            var media = fixture.Create<PollMedia>();
+            var media = _fixture.Create<PollMedia>();
             var copy = new PollMedia(media);
 
             ShouldMatch(copy, media);
@@ -71,7 +70,7 @@ namespace StrawSharp.Tests
         [Test, AutoData]
         public void UserConfigCopyConstructorTests()
         {
-            var config = fixture.Create<UserConfig>();
+            var config = _fixture.Create<UserConfig>();
             var copy = new UserConfig(config);
 
             ShouldMatch(copy, config);
@@ -81,7 +80,7 @@ namespace StrawSharp.Tests
         [Test, AutoData]
         public void UserMetaCopyConstructorTests()
         {
-            var meta = fixture.Create<UserMeta>();
+            var meta = _fixture.Create<UserMeta>();
             var copy = new UserMeta(meta);
 
             ShouldMatch(copy, meta);
@@ -91,7 +90,7 @@ namespace StrawSharp.Tests
         [Test, AutoData]
         public void UserCopyConstructorTests()
         {
-            var user = fixture.Create<User>();
+            var user = _fixture.Create<User>();
             var copy = new User(user);
 
             ShouldMatch(copy, user);
@@ -101,7 +100,7 @@ namespace StrawSharp.Tests
         [Test, AutoData]
         public void PollCopyConstructorTests()
         {
-            var poll = fixture.Create<Poll>();
+            var poll = _fixture.Create<Poll>();
             var copy = new Poll(poll);
 
             ShouldMatch(copy, poll);

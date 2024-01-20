@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using StrawSharp.Models.PollModels.Options;
 
 namespace StrawSharp.Builders.Interfaces
 {

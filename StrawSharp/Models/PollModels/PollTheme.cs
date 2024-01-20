@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text.Json.Serialization;
 using StrawSharp.JsonConverters;
-using StrawSharp.Models.EnumValues;
 
 namespace StrawSharp.Models.PollModels
 {
@@ -28,73 +27,8 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("page_layout")]
         public string PageLayout { get; set; }
 
-        [JsonPropertyName("title")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? TitleColor { get; set; }
-
-        [JsonPropertyName("text")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? TextColor { get; set; }
-
-        [JsonPropertyName("border")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? BorderColor { get; set; }
-
-        [JsonPropertyName("box_bg")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? BoxBackgroundColor { get; set; }
-
-        [JsonPropertyName("box_border")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? BoxBorderColor { get; set; }
-
-        [JsonPropertyName("box_border_top")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? BoxBorderTopColor { get; set; }
-
-        [JsonPropertyName("input_bg")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? InputBackgroundColor { get; set; }
-
-        [JsonPropertyName("input_border")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? InputBorderColor { get; set; }
-
-        [JsonPropertyName("input_highlight")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? InputHighlightColor { get; set; }
-
-        [JsonPropertyName("input_text")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? InputTextColor { get; set; }
-
-        [JsonPropertyName("page_bg")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? PageBackgroundColor { get; set; }
-
-        [JsonPropertyName("primary_button_bg")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? PrimaryButtonBackgroundColor { get; set; }
-
-        [JsonPropertyName("primary_button_border")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? PrimaryButtonBorderColor { get; set; }
-
-        [JsonPropertyName("primary_button_text")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? PrimaryButtonTextColor { get; set; }
-
-        [JsonPropertyName("secondary_button_bg")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? SecondaryButtonBackgroundColor { get; set; }
-
-        [JsonPropertyName("secondary_button_border")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? SecondaryButtonBorderColor { get; set; }
-
-        [JsonPropertyName("secondary_button_text")]
-        [JsonConverter(typeof(StringColorConverter))]
-        public Color? SecondaryButtonTextColor { get; set; }
+        [JsonPropertyName("colors")]
+        public PollThemeColor Colors { get; set; }
 
         [JsonPropertyName("option_colors")]
         [JsonConverter(typeof(StringArrayColorListConverter))]
@@ -167,23 +101,7 @@ namespace StrawSharp.Models.PollModels
             Name = other.Name;
             PageAppearance = other.PageAppearance;
             PageLayout = other.PageLayout;
-            TitleColor = other.TitleColor;
-            TextColor = other.TextColor;
-            BorderColor = other.BorderColor;
-            BoxBackgroundColor = other.BoxBackgroundColor;
-            BoxBorderColor = other.BoxBorderColor;
-            BoxBorderTopColor = other.BoxBorderTopColor;
-            InputBackgroundColor = other.InputBackgroundColor;
-            InputBorderColor = other.InputBorderColor;
-            InputHighlightColor = other.InputHighlightColor;
-            InputTextColor = other.InputTextColor;
-            PageBackgroundColor = other.PageBackgroundColor;
-            PrimaryButtonBackgroundColor = other.PrimaryButtonBackgroundColor;
-            PrimaryButtonBorderColor = other.PrimaryButtonBorderColor;
-            PrimaryButtonTextColor = other.PrimaryButtonTextColor;
-            SecondaryButtonBackgroundColor = other.SecondaryButtonBackgroundColor;
-            SecondaryButtonBorderColor = other.SecondaryButtonBorderColor;
-            SecondaryButtonTextColor = other.SecondaryButtonTextColor;
+            Colors = other.Colors;
             OptionColors = new List<Color>(other.OptionColors);
             BackToPollText = other.BackToPollText;
             InstructionsText = other.InstructionsText;
@@ -208,22 +126,7 @@ namespace StrawSharp.Models.PollModels
         protected bool Equals(PollTheme other)
         {
             return Id == other.Id && Name == other.Name && PageAppearance == other.PageAppearance &&
-                   PageLayout == other.PageLayout && Nullable.Equals(TitleColor, other.TitleColor) &&
-                   Nullable.Equals(TextColor, other.TextColor) && Nullable.Equals(BorderColor, other.BorderColor) &&
-                   Nullable.Equals(BoxBackgroundColor, other.BoxBackgroundColor) &&
-                   Nullable.Equals(BoxBorderColor, other.BoxBorderColor) &&
-                   Nullable.Equals(BoxBorderTopColor, other.BoxBorderTopColor) &&
-                   Nullable.Equals(InputBackgroundColor, other.InputBackgroundColor) &&
-                   Nullable.Equals(InputBorderColor, other.InputBorderColor) &&
-                   Nullable.Equals(InputHighlightColor, other.InputHighlightColor) &&
-                   Nullable.Equals(InputTextColor, other.InputTextColor) &&
-                   Nullable.Equals(PageBackgroundColor, other.PageBackgroundColor) &&
-                   Nullable.Equals(PrimaryButtonBackgroundColor, other.PrimaryButtonBackgroundColor) &&
-                   Nullable.Equals(PrimaryButtonBorderColor, other.PrimaryButtonBorderColor) &&
-                   Nullable.Equals(PrimaryButtonTextColor, other.PrimaryButtonTextColor) &&
-                   Nullable.Equals(SecondaryButtonBackgroundColor, other.SecondaryButtonBackgroundColor) &&
-                   Nullable.Equals(SecondaryButtonBorderColor, other.SecondaryButtonBorderColor) &&
-                   Nullable.Equals(SecondaryButtonTextColor, other.SecondaryButtonTextColor) &&
+                   PageLayout == other.PageLayout && Colors == other.Colors &&
                    OptionColors.SequenceEqual(other.OptionColors) && BackToPollText == other.BackToPollText &&
                    InstructionsText == other.InstructionsText && LiveResultsText == other.LiveResultsText &&
                    ParticipantsText == other.ParticipantsText && RefreshResultsText == other.RefreshResultsText &&
@@ -251,23 +154,7 @@ namespace StrawSharp.Models.PollModels
                 hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (PageAppearance != null ? PageAppearance.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (PageLayout != null ? PageLayout.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ TitleColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ TextColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ BorderColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ BoxBackgroundColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ BoxBorderColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ BoxBorderTopColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ InputBackgroundColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ InputBorderColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ InputHighlightColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ InputTextColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ PageBackgroundColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ PrimaryButtonBackgroundColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ PrimaryButtonBorderColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ PrimaryButtonTextColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ SecondaryButtonBackgroundColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ SecondaryButtonBorderColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ SecondaryButtonTextColor.GetHashCode();
+                hashCode = (hashCode * 397) ^ (Colors != null ? Colors.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (OptionColors != null ? OptionColors.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (BackToPollText != null ? BackToPollText.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (InstructionsText != null ? InstructionsText.GetHashCode() : 0);

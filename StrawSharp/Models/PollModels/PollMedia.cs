@@ -7,6 +7,9 @@ namespace StrawSharp.Models.PollModels
 {
     public class PollMedia
     {
+        /// <summary>
+        /// The unique ID of this media.
+        /// </summary>
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
@@ -16,25 +19,49 @@ namespace StrawSharp.Models.PollModels
         [JsonPropertyName("type")]
         public string Type { get; set; }
 
+        /// <summary>
+        /// The user who uploaded this media or <see langword="null"/> if it was uploaded anonymously.
+        /// </summary>
         [JsonPropertyName("user")]
         public User User { get; set; }
 
         [JsonPropertyName("source")]
         public string Source { get; set; }
 
+        [JsonPropertyName("path")]
+        public string Path { get; set; }
+
+        /// <summary>
+        /// The direct link to this media.
+        /// </summary>
         [JsonPropertyName("url")]
         public string Url { get; set; }
+
+        /// <summary>
+        /// The width in pixels of this media.
+        /// </summary>
 
         [JsonPropertyName("width")]
         public int Width { get; set; }
 
+        /// <summary>
+        /// The height in pixels of this media.
+        /// </summary>
+
         [JsonPropertyName("height")]
         public int Height { get; set; }
+        
+        /// <summary>
+        /// The date and time this media was uploaded.
+        /// </summary>
 
         [JsonPropertyName("created_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreatedAt { get; set; }
 
+        /// <summary>
+        /// The date and time this media was last updated.
+        /// </summary>
         [JsonPropertyName("updated_at")]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? UpdatedAt { get; set; }

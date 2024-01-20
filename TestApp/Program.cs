@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using StrawSharp;
 using StrawSharp.Builders;
 using StrawSharp.Models.EnumValues;
+using StrawSharp.Models.PollModels;
 
 namespace TestApp
 {
@@ -15,21 +17,21 @@ namespace TestApp
             var client = new StrawPollClient(/* Your API Key (if you have one) */);
             
             // Upload Image
-            /*var imageName = "TestImage.png";
+            var imageName = "TestImage.png";
             var imagePath = Path.Combine(AppContext.BaseDirectory, "Media", imageName);
             PollMedia uploadMediaResponse;
             await using (var file = File.OpenRead(imagePath))
             {
                 uploadMediaResponse = await client.UploadMediaAsync(imageName, file);
-            }*/
+            }
             
             //Create Multiple Choice Poll
             var poll = PollBuilder
                 .ForMultipleChoicePoll()
                 .WithTitle("Test")
                 .WithDescription("StrawSharp Test")
-                //.WithDeadline(DateTime.Now + TimeSpan.FromMinutes(2))
-                //.WithMediaId(uploadMediaResponse.Id)
+                .WithDeadline(DateTime.Now + TimeSpan.FromMinutes(2))
+                .WithMediaId(uploadMediaResponse.Id)
                 .WithTextOptions("Test 1", "Test 2", "Test 3")
                 .WithThemeId(DefaultTheme.Cyberpunk2077)
                 .Build();

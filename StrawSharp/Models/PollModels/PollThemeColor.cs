@@ -47,7 +47,7 @@ namespace StrawSharp.Models.PollModels
         [JsonConverter(typeof(StringColorConverter))]
         public Color? ButtonTextColor { get; set; }
 
-        [JsonPropertyName("button_text")]
+        [JsonPropertyName("highlight")]
         [JsonConverter(typeof(StringColorConverter))]
         public Color? HighlightColor { get; set; }
 
